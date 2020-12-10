@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 29
+        versionCode 1
+        versionName "2.0.0.7"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//   repositories {
+//       flatDir{
+//           dir 'libs'
+//       }
+//   }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    api files('libs/idcard_sdk.jar')
+    api files('libs/android_auth.jar')
+    api files('libs/pki.jar')
+    /*compileOnly files('libs/pki.jar')
+        compileOnly files('libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar')
+        compileOnly files('libs/bcprov-ext-jdk15-146.jar')
+        compileOnly files('libs/android_auth.jar')*/
+    //api(name:"app_sdk",ext:'aar')
+}

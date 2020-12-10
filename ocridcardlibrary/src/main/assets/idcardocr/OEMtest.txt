@@ -1,0 +1,26 @@
+. 
+--- below this we check the registry license features, there should be none --- 
+DISTR_TST - Capture SDK utility to test ENGine configuration on a non-developer
+            computer with a Technology Pack license or an OEM License File.
+Program version 4.0.3, RECapi version 15.2, Copyright 2000-2007, Nuance Communications, Inc.
+Displaying licenses ...
+  Capture SDK version 15 license was not found or expired.
+--- if any license features are listed above this, registry license should be deleted --- 
+. 
+DISTR_TST - Capture SDK utility to test ENGine configuration on a non-developer
+            computer with a Technology Pack license or an OEM License File.
+Program version 4.0.3, RECapi version 15.2, Copyright 2000-2007, Nuance Communications, Inc.
+Displaying licenses ...
+  Loading OEM License file oem_517813_wintone.lic: OK.
+     1. FEA_ENGine      enabled
+     2. FEA_RUNTIME     enabled
+     3. FEA_MTX         enabled
+     4. FEA_MAT         enabled
+     5. FEA_DOT         enabled
+     6. FEA_MOR         enabled
+     7. FEA_PLUS2W      enabled
+     8. FEA_V15         enabled
+     9. FEA_TXB         enabled
+    10. FEA_PLUS3W      enabled
+  The license is a *PERMANENT* license.
+this test was performed on 2010-01-05 ÐÇÆÚ¶þ 

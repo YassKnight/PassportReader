@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE IDCARD SYSTEM "IDCARD.dtd">
+<IDCARD>
+  <CIDCardTemplate nMainDocumentID="1035" chDocumentName="English Name" engDocumentName="English Name" imageSizeType="2">
+    <vecProcessImage>
+      <CProcessImage processType="3">
+        <CEraseBlackBorderEx>
+          <RECT Left="0" Top="0" Right="10000" Bottom="10000" />
+          <RECT Left="2000" Top="2000" Right="8900" Bottom="8000" />
+        </CEraseBlackBorderEx>
+      </CProcessImage>
+    </vecProcessImage>
+    <vecRegion>
+      <CRegion nIndex="0" nRegionType="1" nProcessOrder="0">
+        
+        <vecImageLightType>
+          
+          <LIGHTTYPE>1</LIGHTTYPE>
+          <LIGHTTYPE>2</LIGHTTYPE>
+        </vecImageLightType>
+        
+        
+        <CLocateRegion bAccurateLocate="0">
+          <vecProcessImage></vecProcessImage>
+         
+          <RECT Left="9999" Top="9999" Right="0" Bottom="0" />
+          <vecAnchorLocateInfo>
+            
+            <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="500" anchorType="1" />
+            <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="9990" anchorType="2" />
+            <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="0" anchorType="3" />
+            <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="9990" anchorType="4" />
+          </vecAnchorLocateInfo>
+          
+          <vecCLocateAnchor></vecCLocateAnchor>
+        </CLocateRegion>
+        <CLocateLine>
+          
+          <RECT Left="0" Top="0" Right="100" Bottom="100" />
+          
+          <RECT Left="30" Top="0" Right="90" Bottom="100" />
+          <CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="160" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="0" nMinElementNum="1" nMaxElementNum="1" nMinWidth="1000" nMaxWidth="8623" nMinHeight="5600" nMaxHeight="9990" nMinSpace="80" nMaxSpace="300" bPostProcess="0">
+            <vecCLocateMethod>
+              <CLocateMethod nLocateMethod="0">
+                
+                <vecProcessImage>
+                  <CProcessImage processType="1">
+                    <CTrueColorToGrayEx nFilter="0">
+                      <RECT Top="0" Right="0" Bottom="0" Left="0" />
+                    </CTrueColorToGrayEx>
+                  </CProcessImage>
+                </vecProcessImage>
+              </CLocateMethod>
+              <CLocateMethod nLocateMethod="1">
+                <vecProcessImage>
+                  <CProcessImage processType="1">
+                    <CTrueColorToGrayEx nFilter="0">
+                      <RECT Top="0" Right="0" Bottom="0" Left="0" />
+                    </CTrueColorToGrayEx>
+                  </CProcessImage>
+                  <CProcessImage processType="2">
+                    <CGrayToBinaryEx>
+                      <vecBinaryParam>
+                        <BINARYPARAM nBlockNum="1" nMethod="3" />
+                      </vecBinaryParam>
+                      
+                      <RECT Left="0" Top="0" Right="0" Bottom="0" />
+                    </CGrayToBinaryEx>
+                  </CProcessImage>
+                </vecProcessImage>
+              </CLocateMethod>
+            </vecCLocateMethod>
+          </CLocateInfo>	
+          <positionPlus nLeftPlus="-10" nRightPlus="20" nTopPlus="-10" nBottomPlus="500" />
+        </CLocateLine>
+        <vecLine>
+         <CLine nIndex="0" bStartOffset="0" bEndOffset="1" bExist="1" bNeedRecog="1" nCheckKeyWord="0">
+         
+            <RECT Left="0" Top="0" Right="0" Bottom="0" />
+            <vecRecogInfo>
+<CRecogInfo bIgnorePoint="0" nMaxPointWidth="0" nMaxPointHeight="0" bMatchRegExp="0" charOrder="\C{4,-1}" bConfirmParams="0" nProcessOrder="0" nKernelType="0">
+              <CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="135" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="0" nMinElementNum="4" nMaxElementNum="-1" nMinWidth="10" nMaxWidth="300" nMinHeight="3000" nMaxHeight="9990" nMinSpace="0" nMaxSpace="800" bPostProcess="1">
+                <vecCLocateMethod>
+                  <CLocateMethod nLocateMethod="1">
+                    <vecProcessImage>
+                      <CProcessImage processType="1">
+                        <CTrueColorToGrayEx nFilter="0">
+                          <RECT Top="0" Right="0" Bottom="0" Left="0"></RECT>
+                        </CTrueColorToGrayEx>
+                      </CProcessImage>
+                      <CProcessImage processType="2">
+                        <CGrayToBinaryEx>
+                          <vecBinaryParam>
+                            <BINARYPARAM nBlockNum="1" nMethod="8" />
+                            <BINARYPARAM nBlockNum="1" nMethod="3" />
+                            <BINARYPARAM nBlockNum="1" nMethod="7" />
+                          </vecBinaryParam>
+                          
+                          <RECT Left="0" Top="0" Right="0" Bottom="0" />
+                        </CGrayToBinaryEx>
+                      </CProcessImage>
+                    </vecProcessImage>
+                  </CLocateMethod>
+                </vecCLocateMethod>
+              </CLocateInfo>
+              <vecKernal>
+                <CKernalInfo kernalMainType="1" nKernalSubType="7" nFilterType="256" nFillingMethod="1" strFilterPlus="" nRecogType="1" nRecogImgeType="0">
+                  <vecCharRatio>
+                    <CCharRatio strChars="" charType="3" nWHRatio="65" />
+                    <CCharRatio strChars="I" charType="10" nWHRatio="20" />
+                  </vecCharRatio>
+                </CKernalInfo>
+                <CKernalInfo kernalMainType="1" nKernalSubType="10" nFilterType="4" nFillingMethod="1" strFilterPlus="" nRecogType="1" nRecogImgeType="0">
+                  <vecCharRatio>
+                    <CCharRatio strChars="" charType="3" nWHRatio="65" />
+                    <CCharRatio strChars="I" charType="10" nWHRatio="20" />
+                  </vecCharRatio>
+                </CKernalInfo>
+              </vecKernal>
+            </CRecogInfo>
+</vecRecogInfo>
+<vecRecogUnit>
+              <CRecogUnit nIndex="1" bLocate="0" bRecog="0">
+                <vecRecogInfo/>
+<vecCInsertChar>
+                  <CInsertChar nCharPos="0" strInsert=" " nMinSpace="80" nMaxSpce="900" nInsertType="0" />
+                </vecCInsertChar>
+              </CRecogUnit>
+            </vecRecogUnit>
+          </CLine>
+          
+        </vecLine>
+      </CRegion>
+      
+    </vecRegion>
+    <vecAnchor>
+      <CAnchor nIndex="0" anchorType="0" anchorPos="0" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+    </vecAnchor>
+    <vecOutPutResult>
+      <COutPutResult nIndex="0" cellRecogType="20" cellNameEng="Reserve" cellName="预留" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0" />
+      <COutPutResult nIndex="1" cellRecogType="20" cellNameEng="English Name" cellName="英文姓名" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0" />
+      
+    </vecOutPutResult>
+  </CIDCardTemplate>
+  
+ </IDCARD>

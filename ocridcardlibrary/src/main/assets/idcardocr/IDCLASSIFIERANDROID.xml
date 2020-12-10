@@ -1,0 +1,1315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClsTpl>
+  <Classifier OutputType="1">
+    <!--0按照真实输出1一定输出一个-->
+    <!--尺度滤波器，根据证件的尺寸进行分类-->
+    <Filter Order="0" TypeID="0x0001" Name="Size" OutputType="0" FilterThresh="0.97">
+      <!--一代证幅面-->
+      <Dictionary ID="1" Width="88" Height="60" />
+      <!--二代证幅面单位毫米-->
+      <Dictionary ID="2" Width="86" Height="53" />
+      <!--护照-->
+      <Dictionary ID="3" Width="124" Height="87" />
+      <!--军官证-->
+      <Dictionary ID="4" Width="138" Height="103" />
+      <!--AVA6护照-->
+      <Dictionary ID="5" Width="124" Height="105" />
+      <!--开页护照-->
+      <Dictionary ID="6" Width="124" Height="174" />
+     <!--登机牌-->
+      <Dictionary ID="7" Width="144" Height="81" />
+      <!--边民证与律师证-->
+      <Dictionary ID="8" Width="87" Height="124" />
+	   <!--仅机读码尺寸-->
+      <Dictionary ID="9" Width="86" Height="21" />
+    </Filter>
+    <!--半页的护照,通用版-->
+    <Filter Order="1" TypeID="0x0004" Name="MRZ" OutputType="2" MatchType="1" Width="124" Height="87">
+      <!--44MRZ-->
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.000064" Right="0.991935" Top="0.727126" Bottom="1.0">
+        <CharInfo CharType="1" CharH="0.028045" CharW="0.013548" Blank="0.004032" />
+        <OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="44" Charset="ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.90" />
+        <MRZLINE CharNum="44" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.90" />
+        <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+    </Filter>
+    <!--AVA6的护照-->
+   <Filter Order="2" TypeID="0x0004" Name="MRZ" OutputType="2" MatchType="1" Width="124" Height="87">
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.000064" Right="0.967741" Top="0.612183" Bottom="0.990505">
+        <CharInfo CharType="1" CharH="0.028045" CharW="0.013548" Blank="0.004032" />
+        <OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="36" Charset="ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" />
+        <MRZLINE CharNum="36" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" />
+        <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+    </Filter>
+    <!--签证AVA6幅面-->
+   <Filter Order="9" TypeID="0x0004" Name="MRZ" OutputType="3" MatchType="0" Width="86" Height="53">
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.5" Right="0.988372" Top="0.018867" Bottom="0.226415">
+        <CharInfo CharType="1" CharH="0.0471698" CharW="0.003488" Blank="0.0029069" />
+        <OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="11" Charset="HM01234567890" MatchRatio="1.0" />
+        <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+    </Filter>
+    <Filter Order="5" TypeID="0x0004" Name="MRZ" OutputType="2" MatchType="1" Width="87" Height="124">
+      <!--44MRZ-->
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.0054" Right="0.268972" Top="0.0054" Bottom="1.0">
+        <CharInfo CharType="1" CharH="0.01965" CharW="0.019348" Blank="0.005732" />
+        <OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="44" Charset="ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.50" />
+        <MRZLINE CharNum="44" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.50" />
+        <Preprocess Binarization="6" Rotation="3" />
+      </Region>
+    </Filter>
+    
+   <Filter Order="10" TypeID="0x0004" Name="MRZ" OutputType="2" MatchType="0" Width="86" Height="53">
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.6188" Right="0.9719" Top="0.0159" Bottom="0.1435">
+        <CharInfo CharType="1" CharH="0.0485" CharW="0.0121" Blank="0.007" />
+        <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="256" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="10" Charset="()01234567890" MatchRatio="0.75" />
+        <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+    </Filter>
+	<Filter Order="4" TypeID="0x0002" Name="KeyWord" FilterThresh="0.60" OutputType="0" MatchType="0">
+      <NOKEYWORD DefaultThresh="0.48" />
+    </Filter>
+    <Filter Order="6" TypeID="0x0004" Name="MRZ" OutputType="3" MatchType="1" Width="86" Height="53">
+			<SizeMatch Status="1" MatchRatio="0.97"/>
+			<Region Left="0.000645" Right="0.967741" Top="0.63165" Bottom="0.9905057">
+				<CharInfo CharType="1" CharH="0.0280459" CharW="0.0135483" Blank="0.00403225"/>
+				<OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8"/>
+				<MRZLINE CharNum="30" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" LineWidth="0"/>
+				<MRZLINE CharNum="30" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" LineWidth="0"/>
+				<MRZLINE CharNum="30" Charset="ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" LineWidth="0"/>
+				<Preprocess Binarization="6" Rotation="0"/>
+			</Region>
+	</Filter>
+    <Filter Order="7" TypeID="0x0004" Name="MRZ" OutputType="2" MatchType="1" Width="124" Height="87">
+      <!--44MRZ-->
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.000064" Right="1.0" Top="0.612183" Bottom="1.0">
+        <CharInfo CharType="1" CharH="0.028045" CharW="0.013548" Blank="0.004032" />
+        <OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="44" Charset="ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.87" />
+        <MRZLINE CharNum="44" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.87" />
+        <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+    </Filter>
+  <!--仅机读码-->
+   <Filter Order="11" TypeID="0x0004" Name="MRZ" OutputType="2" MatchType="1" Width="86" Height="21">
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.000064" Right="0.987741" Top="0.000064" Bottom="0.990505">
+        <CharInfo CharType="1" CharH="0.13333" CharW="0.01331" Blank="0.006657" />
+        <OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="36" Charset="ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" />
+        <MRZLINE CharNum="36" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" />
+        <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+    </Filter>
+	<Filter Order="12" TypeID="0x0004" Name="MRZ" OutputType="2" MatchType="1" Width="86" Height="21">
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.000064" Right="0.987741" Top="0.000064" Bottom="0.990505">
+        <CharInfo CharType="1" CharH="0.1089494" CharW="0.013548" Blank="0.004032" />
+        <OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="44" Charset="ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.87" />
+        <MRZLINE CharNum="44" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.87" />
+        <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+    </Filter>
+	<Filter Order="13" TypeID="0x0004" Name="MRZ" OutputType="2" MatchType="1" Width="86" Height="21">
+      <SizeMatch Status="1" MatchRatio="0.97" />
+      <Region Left="0.000064" Right="0.987741" Top="0.000064" Bottom="0.990505">
+        <CharInfo CharType="1" CharH="0.1204819" CharW="0.0135483" Blank="0.00403225" />
+        <OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8" />
+        <MRZLINE CharNum="30" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" LineWidth="0"/>
+		<MRZLINE CharNum="30" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" LineWidth="0"/>
+		<MRZLINE CharNum="30" Charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;" MatchRatio="0.85" LineWidth="0"/>
+        <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+    </Filter>
+  </Classifier>
+  <TemplateSet>
+    <Template Order="0" MainID="0x0010" SubID="0x0001" Name="户口本" Width="141" Height="105">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="4"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.219858" Right="0.794326" Top="0.028571" Bottom="0.142857">
+            <KeyWords Content="常住人口登记卡" CharType="1" CharNum="7" Charset="" CharH="0.051428" CharW="0.026382" Blank="0.019148" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="2" MainID="0x0002" SubID="0x0001" Name="二代证正面" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x0004" />
+          <MAP PCAID="0x0005" />
+          <MAP PCAID="0x0006" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+          <Region Left="0.015075" Right="0.50000" Top="0.725806" Bottom="0.99995">
+            <KeyWords Content="公民身份号码" CharType="1" CharNum="6" Charset="" CharH="0.047924" CharW="0.029534" Blank="0.002906" />
+            <OrcEngine OcrMainType="1" OcrSubType="18" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="3" MainID="0x0003" SubID="0x0001" Name="二代证背面" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x0009" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.6">
+          <Region Left="0.232558" Right="0.918604" Top="0.056603" Bottom="0.245283">
+            <KeyWords Content="中华人民共和国" CharType="1" CharNum="7" Charset="" CharH="0.097168" CharW="0.059069" Blank="0.022674" />
+            <OrcEngine OcrMainType="1" OcrSubType="18" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.151162" Right="0.441860" Top="0.622641" Bottom="0.962264">
+            <KeyWords Content="签发机关有效期限" CharType="1" CharNum="8" Charset="" CharH="0.046415" CharW="0.028604" Blank="0.005930" />
+            <OrcEngine OcrMainType="1" OcrSubType="18" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="4" MainID="0x0004" SubID="0x0001" Name="临时身份证" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x0007" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+          <Region Left="0.023255" Right="0.348837" Top="0.622641" Bottom="0.962264">
+            <KeyWords Content="有效期限签发机关" CharType="1" CharNum="8" Charset="" CharH="0.047924" CharW="0.029534" Blank="0.002906" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="6" MainID="0x0005" SubID="0x0001" Name="驾照二(新)" Width="88" Height="60">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="1"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.3">
+          <Region Left="0.375" Right="0.954545" Top="0.216666" Bottom="0.433333">
+            <KeyWords Content="性别国籍" CharType="1" CharNum="4" Charset="" CharH="0.042333" CharW="0.026022" Blank="0.004772" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.011363" Right="0.693181" Top="0.816666" Bottom="0.983333">
+            <KeyWords Content="起始期限" CharType="1" CharNum="4" Charset="" CharH="0.042333" CharW="0.026022" Blank="0.004772" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="7" MainID="0x0006" SubID="0x0003" Name="行驶证三" Width="88" Height="60">
+      <Classifier>
+       <Filter Index="0" TypeID="0x0001" SID="1"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+         <Region Left="0.3445" Right="0.5462" Top="0.5020" Bottom="0.6330">
+			<KeyWords Content="品牌型号" CharType="1" CharNum="4" Charset="" CharH="0.042333" CharW="0.026022" Blank="0.00477"/>
+			<OrcEngine OcrMainType="1" OcrSubType="17" FilterType="1" FillingMethod="0" ImgType="8"/>
+			<Preprocess Binarization="6" Rotation="0"/>
+			</Region>
+          <Region Left="0.28409" Right="0.53409" Top="0.6028" Bottom="0.7540">
+				<KeyWords Content="辆识别代号" CharType="1" CharNum="5" Charset="" CharH="0.0423333" CharW="0.026022" Blank="0.004772"/>
+					<OrcEngine OcrMainType="1" OcrSubType="17" FilterType="1" FillingMethod="0" ImgType="8"/>
+					<Preprocess Binarization="6" Rotation="0"/>
+				</Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="8" MainID="0x0006" SubID="0x0002" Name="行驶证二" Width="88" Height="60">
+      <Classifier>
+       
+        <Filter Index="0" TypeID="0x0001" SID="1"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.590909" Right="0.863636" Top="0.4884" Bottom="0.6269">
+						<KeyWords Content="使用性质" CharType="1" CharNum="4" Charset="" CharH="0.042333" CharW="0.026022" Blank="0.00477"/>
+						<OrcEngine OcrMainType="1" OcrSubType="17" FilterType="4" FillingMethod="0" ImgType="8"/>
+						<Preprocess Binarization="6" Rotation="0"/>
+					</Region>
+          <Region Left="0.2386363" Right="0.4938" Top="0.6038" Bottom="0.75666">
+			<KeyWords Content="发动机号码" CharType="1" CharNum="5" Charset="" CharH="0.042333" CharW="0.026022" Blank="0.00477"/>
+			<OrcEngine OcrMainType="1" OcrSubType="17" FilterType="1" FillingMethod="0" ImgType="8"/>
+			<Preprocess Binarization="6" Rotation="0"/>
+		  </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="9" MainID="0x0006" SubID="0x0001" Name="行驶证一(老)" Width="88" Height="60">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="1"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.4">
+          <Region Left="0.011363" Right="0.238636" Top="0.083333" Bottom="0.633333">
+            <KeyWords Content="车主" CharType="1" CharNum="2" Charset="" CharH="0.041" CharW="0.019204" Blank="0.004772" />
+            <OrcEngine OcrMainType="1" OcrSubType="17" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+		 <Region Left="0.235849" Right="0.5607476" Top="0.6447368" Bottom="0.789473">
+            <KeyWords Content="总质量" CharType="1" CharNum="3" Charset="" CharH="0.041" CharW="0.019204" Blank="0.004772" />
+            <OrcEngine OcrMainType="1" OcrSubType="17" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.579439" Right="0.88785" Top="0.6447368" Bottom="0.789473">
+            <KeyWords Content="核定载质量" CharType="1" CharNum="5" Charset="" CharH="0.041" CharW="0.019204" Blank="0.004772" />
+            <OrcEngine OcrMainType="1" OcrSubType="17" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="10" MainID="0x0007" SubID="0x0001" Name="军官证" Width="137" Height="102">
+      <Classifier>
+        <!---Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x0015" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="4"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.014598" Right="0.248175" Top="0.549019" Bottom="0.941176">
+            <KeyWords Content="发证机关发证日期有效期至" CharType="1" CharNum="12" Charset="" CharH="0.033235" CharW="0.022189" Blank="0.005547" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="11" MainID="0x000e" SubID="0x0001" Name="回乡证" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x000a" />
+          <MAP PCAID="0x000b" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.3">
+          <Region Left="0.337209" Right="0.651162" Top="0.433962" Bottom="0.622641">
+            <KeyWords Content="港澳证件号码" CharType="1" CharNum="6" Charset="" CharH="0.03125" CharW="0.01666" Blank="0.009765" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+        <Filter Index="9" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="11" FlagPos="0" Flag="H" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="12" MainID="0x000f" SubID="0x0001" Name="回乡证背面" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x000c" />
+          <MAP PCAID="0x000d" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.081395" Right="0.930232" Top="0.018867" Bottom="0.264150">
+            <KeyWords Content="港澳居民来往内地" CharType="1" CharNum="8" Charset="" CharH="0.100566" CharW="0.064534" Blank="0.025581" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="28" MainID="0x000d" SubID="0x0200" Name="国际护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0" Flag="P" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="13" MainID="0x000d" SubID="0x0102" Name="97-1版因私普通护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4," Flag="POCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="GCHN" />
+        </Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.40">
+            <Region Left="0.266129" Right="0.548387" Top="0.6032183" Bottom="0.78160919">
+            <KeyWords Content="签发" CharType="1" CharNum="2" Charset="" CharH="0.02425287" CharW="0.0163709" Blank="0.0032258" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.532258" Right="0.919354" Top="0.287356" Bottom="0.482758">
+            <KeyWords Content="身份证号码" CharType="13" CharNum="5" Charset="" CharH="0.024252" CharW="0.016370" Blank="0.003225" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="80" MainID="0x000d" SubID="0x0104" Name="2012版因私普通护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="POCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="ECHN" />
+        </Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.4">
+         <Region Left="0.59125" Right="0.77375" Top="0.58303" Bottom="0.66166">
+				<KeyWords Content="持照人签名" CharType="1" CharNum="5" Charset="" CharH="0.0180570" CharW="0.011918" Blank="0.003225"/>
+				<OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8"/>
+				<Preprocess Binarization="6" Rotation="0"/>
+			</Region>
+			<Region Left="0.40902" Right="0.61283" Top="0.31394" Bottom="0.42126">
+				<KeyWords Content="CHINES" CharType="3" CharNum="5" Charset="" CharH="0.02407" CharW="0.011918" Blank="0.004225"/>
+				<OrcEngine OcrMainType="1" OcrSubType="6" FilterType="0" FillingMethod="0" ImgType="8"/>
+				<Preprocess Binarization="6" Rotation="0"/>
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="14" MainID="0x000d" SubID="0x0103" Name="97-2版因私普通护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="POCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="GCHN" />
+        </Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.25">
+            <Region Left="0.266129" Right="0.548387" Top="0.5632183" Bottom="0.78160919">
+            <KeyWords Content="机关公安部出入境" CharType="1" CharNum="8" Charset="" CharH="0.02425287" CharW="0.0163709" Blank="0.0032258" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.57563" Right="0.7719" Top="0.379310" Bottom="0.540229">
+            <KeyWords Content="签发" CharType="1" CharNum="2" Charset="" CharH="0.024252" CharW="0.016370" Blank="0.003225" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="15" MainID="0x000d" SubID="0x0110" Name="中国公务普通护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="PPCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="PCHN" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="16" MainID="0x000d" SubID="0x0110" Name="中国公务护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="PSCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="SCHN"/>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="17" MainID="0x000d" SubID="0x0120" Name="中国旅行证" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="PTCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="TCHN"/>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="18" MainID="0x0009" SubID="0x0001" Name="中国往来港澳通行证" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="W&lt;CHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="CHN"/>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="19" MainID="0x0009" SubID="0x0002" Name="因公往来港澳通行证" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="AKCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="KCHN"/>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="20" MainID="0x000b" SubID="0x0001" Name="大陆往来台湾通行证" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="D&lt;CHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="TCHN"/>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="21" MainID="0x000c" SubID="0x0001" Name="签证国外签发" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="VCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="22" MainID="0x000c" SubID="0x0002" Name="签证国内签发" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="2" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="36" FlagPos="0,2,3,4" Flag="VCHN" />
+          <RULE MrzLineIndex="1" CharNum="36" FlagPos="" Flag="" />
+        </Filter>
+           <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+          <Region Left="0.083787" Right="0.31508" Top="0.4" Bottom="0.511764">
+            <KeyWords Content="入境次数" CharType="1" CharNum="4" Charset="" CharH="0.02840" CharW="0.01798" Blank="0.0015" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="23" MainID="0x000c" SubID="0x0003" Name="外国人居留许可" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="2" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="36" FlagPos="0,1,2,3,4" Flag="R&lt;CHN" />
+          <RULE MrzLineIndex="1" CharNum="36" FlagPos="" Flag="" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="24" MainID="0x000c" SubID="0x0004" Name="台湾居留签注" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="2" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="36" FlagPos="0" Flag="T" />
+          <RULE MrzLineIndex="1" CharNum="36" FlagPos="10,11,12" Flag="CHN" />
+        </Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.3">
+          <Region Left="0.056451" Right="0.5080645" Top="0.087931" Bottom="0.3248275">
+            <KeyWords Content="居留" CharType="1" CharNum="2" Charset="" CharH="0.045632" CharW="0.026612" Blank="0.0067741" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.102258" Right="0.3548387" Top="0.3103448" Bottom="0.689655">
+            <KeyWords Content="地点" CharType="1" CharNum="2" Charset="" CharH="0.024252" CharW="0.0169354" Blank="0.0056451" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="25" MainID="0x000c" SubID="0x0005" Name="台湾往来大陆签注" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="2" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="36" FlagPos="0" Flag="T" />
+          <RULE MrzLineIndex="1" CharNum="36" FlagPos="10,11,12" Flag="CHN" />
+        </Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.4">
+          <Region Left="0.056451" Right="0.5080645" Top="0.087931" Bottom="0.324827">
+            <KeyWords Content="来往大陆" CharType="1" CharNum="4" Charset="" CharH="0.0456321" CharW="0.0266129" Blank="0.0067741" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.462580" Right="0.7080645" Top="0.3093103" Bottom="0.673563">
+            <KeyWords Content="来往次数" CharType="1" CharNum="4" Charset="" CharH="0.0242528" CharW="0.016935" Blank="0.00564" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="26" MainID="0x0008" SubID="0x0001" Name="士兵证" Width="137" Height="102">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x0016" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="4"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.525547" Right="0.890510" Top="0.019607" Bottom="0.1470588">
+            <KeyWords Content="职务军衔登记" CharType="1" CharNum="6" Charset="" CharH="0.0331372" CharW="0.024671" Blank="0.006131" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="27" MainID="0x000d" SubID="0x0101" Name="中国普通护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4," Flag="POCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="GCHN" />
+        </Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.35">
+          <Region Left="0.25" Right="0.475806" Top="0.6551724" Bottom="0.7816091">
+            <KeyWords Content="身份证号码" CharType="1" CharNum="5" Charset="" CharH="0.02425287" CharW="0.016370" Blank="0.0032258" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="29" MainID="0x000a" SubID="0x0001" Name="台胞证" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="T&lt;CHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="CHN"/>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="30" MainID="0x03eb" SubID="0x0001" Name="边民证A" Width="87" Height="124">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="8"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.29779" Right="0.70125" Top="0.58664" Bottom="0.67633">
+            <KeyWords Content="持证人签名" CharType="1" CharNum="5" Charset="" CharH="0.03304113" CharW="0.04418828" Blank="0.0076849" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      
+      </Classifier>
+    </Template>
+    <Template Order="35" MainID="0x03eb" SubID="0x0002" Name="边民证A" Width="87" Height="124">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="8"></Filter>
+        <Filter Index="5" TypeID="0x0004" >
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0" Flag="T" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+        </Filter>
+      </Classifier>
+    </Template> 
+    <Template Order="31" MainID="0x03ec" SubID="0x0001" Name="边民证B" Width="87" Height="124">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="8"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.86455" Right="0.36983" Top="0.09912" Bottom="0.16521">
+            <KeyWords Content="姓名" CharType="1" CharNum="2" Charset="" CharH="0.02899527" CharW="0.036503362" Blank="0.0355427473" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="32" MainID="0x03ef" SubID="0x0001" Name="律师证A" Width="87" Height="124">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="8"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.05187" Right="0.28722" Top="0.13486" Bottom="0.26301">
+            <KeyWords Content="执业机构" CharType="1" CharNum="4" Charset="" CharH="0.0262980" CharW="0.03650336" Blank="0.0048030739" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="33" MainID="0x03f0" SubID="0x0001" Name="律师证B" Width="87" Height="124">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="8"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.11623" Right="0.36983" Top="0.76422" Bottom="0.87660">
+            <KeyWords Content="身份证号" CharType="1" CharNum="4" Charset="" CharH="0.0262980" CharW="0.03650336" Blank="0.0048030739" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="34" MainID="0x03ed" SubID="0x0001" Name="澳门永久性居民身份证" Width="86" Height="53">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+      </Classifier>
+    </Template>
+
+    <Template Order="63" MainID="0x000e" SubID="0x0001" Name="回乡证" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x000a" />
+          <MAP PCAID="0x000b" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.3">
+          <Region Left="0.337209" Right="0.651162" Top="0.433962" Bottom="0.622641">
+            <KeyWords Content="港澳证件号码" CharType="1" CharNum="6" Charset="" CharH="0.03125" CharW="0.01666" Blank="0.009765" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+        <Filter Index="9" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="11" FlagPos="0" Flag="M" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="64" MainID="0x03e8" SubID="0x0003" Name="广东居住证" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x0002" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+          <Region Left="0.177497" Right="0.722599" Top="0.044776" Bottom="0.244776">
+            <KeyWords Content="广东省居住证" CharType="1" CharNum="8" Charset="" CharH="0.10396" CharW="0.056976" Blank="0.0236" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="65" MainID="0x03e8" SubID="0x0001" Name="深圳居住证" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x0001" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+          <Region Left="0.045521" Right="0.964757" Top="0.0393518" Bottom="0.25694">
+            <KeyWords Content="深圳市居住证" CharType="1" CharNum="6" Charset="" CharH="0.073396" CharW="0.042325" Blank="0.009883" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="66" MainID="0x03e8" SubID="0x0002" Name="东莞市居住证" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x0000" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+      </Classifier>
+    </Template>
+    <Template Order="67" MainID="0x03e9" SubID="0x0001" Name="香港永久性居民身份证" Width="86" Height="53">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.28">
+          <Region Left="0.234375" Right="0.736328125" Top="0.0234375" Bottom="0.1828125">
+            <KeyWords Content="香港永久性居民身份证" CharType="1" CharNum="10" Charset="" CharH="0.0390625" CharW="0.029296" Blank="0.009765" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.2678396" Right="0.651026" Top="0.4477379" Bottom="0.6193447">
+            <KeyWords Content="出生日期" CharType="1" CharNum="4" Charset="" CharH="0.034375" CharW="0.01955" Blank="0.00977" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="68" MainID="0x03ea" SubID="0x0001" Name="登机牌厦门航空" Width="144" Height="81">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="7"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+          <Region Left="0.007656" Right="0.129564" Top="0.273760" Bottom="0.823347">
+            <KeyWords Content="姓名航班到达站日期" CharType="1" CharNum="9" Charset="" CharH="0.0340909" CharW="0.01766" Blank="0.005889" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="69" MainID="0x03ea" SubID="0x0002" Name="登机牌国际航班" Width="144" Height="81">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="7"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+          <Region Left="0.015882" Right="0.12647058" Top="0.1743215" Bottom="0.78288">
+            <KeyWords Content="航班日期姓名目的站" CharType="1" CharNum="9" Charset="" CharH="0.026096" CharW="0.01177856" Blank="0.011778" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="70" MainID="0x000d" SubID="0x0111" Name="2011版中国公务普通护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="PPCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,1,10,11,12" Flag="PECHN" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="61" MainID="0x000d" SubID="0x0111" Name="2011版中国公务护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="PSCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,1,10,11,12" Flag="SECHN"/>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="71" MainID="0x000d" SubID="0x020A" Name="德国护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PD&lt;&lt;" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="D&lt;&lt;" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="72" MainID="0x000d" SubID="0x0214" Name="法国护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PFRA" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="FRA" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="73" MainID="0x000d" SubID="0x021E" Name="印尼护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PIDN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="IDN" />
+        </Filter>
+      </Classifier>
+    </Template>  
+    <Template Order="74" MainID="0x000d" SubID="0x0228" Name="韩国护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PKOR" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="PKOR" />
+        </Filter>
+      </Classifier>
+    </Template>   
+    <Template Order="75" MainID="0x000d" SubID="0x0232" Name="黎巴嫩护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PLBN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="LBN" />
+        </Filter>
+      </Classifier>
+    </Template>  
+    <Template Order="76" MainID="0x000d" SubID="0x023C" Name="墨西哥护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PMEX" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="MEX" />
+        </Filter>
+      </Classifier>
+    </Template> 
+    <Template Order="77" MainID="0x000d" SubID="0x0246" Name="泰国护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PTHA" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="THA" />
+        </Filter>
+      </Classifier>
+    </Template>            
+    <Template Order="79" MainID="0x000c" SubID="0x0006" Name="经济特区旅游签证" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="2" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="36" FlagPos="0,2,3,4" Flag="VCHN" />
+          <RULE MrzLineIndex="1" CharNum="36" FlagPos="" Flag="" />
+        </Filter>
+           <Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+          <Region Left="0.083787" Right="0.31508" Top="0.4" Bottom="0.511764">
+            <KeyWords Content="出生日期" CharType="1" CharNum="4" Charset="" CharH="0.02840" CharW="0.01798" Blank="0.0015" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      
+      </Classifier>
+    </Template>   
+    <Template Order="81" MainID="0x03f3" SubID="0x0001" Name="中华人民共和国组织机构代码证" Width="86" Height="53">
+    </Template>
+    <Template Order="82" MainID="0x03f4" SubID="0x0001" Name="税务登记证" Width="86" Height="53">
+    </Template>
+    <Template Order="83" MainID="0x03f5" SubID="0x0001" Name="营业执照" Width="86" Height="53">
+    </Template>
+     <Template Order="84" MainID="0x044c" SubID="0x0001" Name="车辆识别代号" Width="86" Height="53">
+    </Template>
+    <Template Order="85" MainID="0x000d" SubID="0x0103" Name="97-2版因私普通护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4," Flag="PLCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="GCHN" />
+        </Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.25">
+            <Region Left="0.266129" Right="0.548387" Top="0.5632183" Bottom="0.78160919">
+            <KeyWords Content="机关公安部出入境" CharType="1" CharNum="8" Charset="" CharH="0.02425287" CharW="0.0163709" Blank="0.0032258" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.57563" Right="0.7719" Top="0.379310" Bottom="0.540229">
+            <KeyWords Content="签发" CharType="1" CharNum="2" Charset="" CharH="0.024252" CharW="0.016370" Blank="0.003225" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+     <Template Order="86" MainID="0x000e" SubID="0x0002" Name="新版回乡证" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x000a" />
+          <MAP PCAID="0x000b" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.3">
+          <Region Left="0.08108" Right="0.8159" Top="0.01385" Bottom="0.230417">
+            <KeyWords Content="港澳居民来往内地通行证" CharType="1" CharNum="11" Charset="" CharH="0.0629" CharW="0.0434" Blank="0.0212" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>       
+      </Classifier>
+    </Template>
+    <Template Order="87" MainID="0x000f" SubID="0x0002" Name="新版回乡证背面" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x000c" />
+          <MAP PCAID="0x000d" />
+        </Filter-->
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+        <Filter Index="6" TypeID="0x0004">
+					<RULE MrzLineIndex="0" CharNum="30" FlagPos="0,1,2" Flag="CRH"/>
+					<RULE MrzLineIndex="1" CharNum="30" FlagPos="" Flag=""/>
+					<RULE MrzLineIndex="2" CharNum="30" FlagPos="" Flag=""/>
+		</Filter>
+        <Filter Index="4" TypeID="0x0002" CheckThresh="0.5">
+          <Region Left="0.101395" Right="0.220232" Top="0.405867" Bottom="0.523150">
+            <KeyWords Content="持证人" CharType="1" CharNum="3" Charset="" CharH="0.100566" CharW="0.064534" Blank="0.025581" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="88" MainID="0x0011" SubID="0x0001" Name="海员证" Width="124" Height="87">
+			<Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="3"/>
+				<Filter Index="1" TypeID="0x0004">
+					<RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1,2,3,4" Flag="SCHN"/>
+					<RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="CHN"/>
+				</Filter>
+				<Filter Index="4" TypeID="0x0002" CheckThresh="0.6">
+					<Region Left="0.028125" Right="0.28125" Top="0.105531" Bottom="0.17030567">
+						<KeyWords Content="海员证" CharType="1" CharNum="3" Charset="" CharH="0.02765" CharW="0.0203125" Blank="0.0364583"/>
+						<OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8"/>
+						<Preprocess Binarization="6" Rotation="0"/>
+					</Region>
+				</Filter>
+			</Classifier>
+		</Template> 
+    <Template Order="89" MainID="0x000d" SubID="0x0250" Name="约旦护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PJOR" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="JOR" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="90" MainID="0x000d" SubID="0x025A" Name="乌拉圭护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PURY" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="URY" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="91" MainID="0x000d" SubID="0x0264" Name="智利护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PCHL" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="CHL" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="92" MainID="0x000d" SubID="0x026E" Name="俄罗斯护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PRUS" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="RUS" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="93" MainID="0x000d" SubID="0x0278" Name="菲律宾护照" Width="124" Height="87">
+			<Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="3"/>
+				<Filter Index="1" TypeID="0x0004">
+					<RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PPHL"/>
+					<RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="PHL"/>
+				</Filter>
+			</Classifier>
+		</Template>
+    <Template Order="94" MainID="0x000d" SubID="0x0282" Name="厄瓜多尔" Width="124" Height="87" >
+            <Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="3"/>
+				<Filter Index="1" TypeID="0x0004">
+					<RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PECU"/>
+					<RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="ECU"/>
+				</Filter>
+			</Classifier>
+    </Template>
+    <Template Order="95" MainID="0x000d" SubID="0x0283" Name="朝鲜护照" Width="124" Height="87" >
+			<Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="3"/>
+				<Filter Index="1" TypeID="0x0004">
+					<RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PPRK"/>
+					<RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="PRK"/>
+				</Filter>
+			</Classifier>
+		</Template>
+    <Template Order="96" MainID="0x000d" SubID="0x0200" Name="国际护照" Width="124" Height="87" >
+			<Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="3"/>
+				<Filter Index="1" TypeID="0x0004">
+					<RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PHND"/>
+					<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag=""/>
+				</Filter>
+			</Classifier>
+		</Template>
+    <Template Order="97" MainID="0x044d" SubID="0x0001" Name="银行卡号" Width="86" Height="53">
+    </Template>
+      <Template Order="98" MainID="0x044e" SubID="0x0001" Name="身份证号码" Width="86" Height="53">
+    </Template>
+    <Template Order="99" MainID="0x03fc" SubID="0x0001" Name="MRZ" Width="86" Height="53">
+    </Template>
+    <Template Order="100" MainID="0x000d" SubID="0x0112" Name="台湾护照" Width="124" Height="87">
+    <Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="3"/>
+				<Filter Index="1" TypeID="0x0004">
+					<RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PTWN"/>
+					<RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="TWN"/>
+				</Filter>
+			</Classifier>
+    </Template>
+    <Template Order="101" MainID="0x0406" SubID="0x0001" Name="台湾全民健康保险证" Width="86" Height="53">
+    <Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="2"/>
+				<Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+					  <Region Left="0.233097" Right="0.79717" Top="0.05188" Bottom="0.27044">
+					  <KeyWords Content="全民健康保險" CharType="1" CharNum="6" Charset="" CharH="0.06918" CharW="0.047424" Blank="0.03834" />
+                     <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="2" FillingMethod="0" ImgType="8" />
+                     <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+			</Classifier>
+    </Template>
+    <Template Order="102" MainID="0x0407" SubID="0x0001" Name="台湾身份证正面" Width="86" Height="53">
+    <Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="2"/>
+				<Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+					  <Region Left="0.19823" Right="0.67615" Top="0.09442" Bottom="0.32043">
+					  <KeyWords Content="中華民國國民身份證" CharType="1" CharNum="9" Charset="" CharH="0.08823" CharW="0.04219" Blank="0.00981" />
+                     <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="2" FillingMethod="0" ImgType="8" />
+                     <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter>
+			</Classifier>
+    </Template>
+    <Template Order="103" MainID="0x0408" SubID="0x0001" Name="台湾身份证反面" Width="86" Height="53">
+    <Classifier>
+		<Filter Index="0" TypeID="0x0001" SID="2"/>
+		<Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+	  <Region Left="0.03448" Right="0.1870" Top="0.20891" Bottom="0.36712">
+		<KeyWords Content="配偶" CharType="1" CharNum="2" Charset="" CharH="0.04454" CharW="0.03444" Blank="0.02854" />
+             <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="2" FillingMethod="0" ImgType="8" />
+                 <Preprocess Binarization="6" Rotation="0" />
+      </Region>
+       <Region Left="0.03448" Right="0.1870" Top="0.34254" Bottom="0.50691">
+			<KeyWords Content="出生地" CharType="1" CharNum="3" Charset="" CharH="0.05376" CharW="0.02559" Blank="0.00885" />
+               <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="2" FillingMethod="0" ImgType="8" />
+               <Preprocess Binarization="6" Rotation="0" />
+       </Region>
+        </Filter>
+			</Classifier>
+    </Template>
+    
+    <Template Order="104" MainID="0x0409" SubID="0x0001" Name="三行机读码" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="13" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="30" FlagPos="0,1,2" Flag="C&lt;C" />
+				<RULE MrzLineIndex="1" CharNum="30" FlagPos="" Flag="" />
+				<RULE MrzLineIndex="2" CharNum="30" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>
+    </Template>
+    <Template Order="105" MainID="0x040a" SubID="0x0001" Name="通用MRZ港澳通行证2005版" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="12" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1" Flag="W&lt;" />
+				<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+			</Filter>
+			<Filter Index="12" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="44" FlagPos="0,1" Flag="AK" />
+				<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>	
+    </Template>
+    <Template Order="106" MainID="0x0016" SubID="0x0001" Name="新版港澳通行证" Width="86" Height="53">
+		<Classifier>
+				<Filter Index="0" TypeID="0x0001" SID="2"/>
+				<Filter Index="4" TypeID="0x0002" CheckThresh="0.45">
+					  <Region Left="0.156342" Right="0.700589" Top="0.035476" Bottom="0.199556">
+					  <KeyWords Content="往来港澳通行证" CharType="1" CharNum="7" Charset="" CharH="0.075388" CharW="0.056047" Blank="0.023598" />
+					  <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="2" FillingMethod="0" ImgType="8" />
+                     <Preprocess Binarization="6" Rotation="0" />
+					  </Region>
+				</Filter>
+		</Classifier>
+    </Template>
+    <Template Order="107" MainID="0x040c" SubID="0x0001" Name="Two MRZ 36*2签证" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"></Filter>
+			<Filter Index="11" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="36" FlagPos="0" Flag="V" />
+				<RULE MrzLineIndex="1" CharNum="36" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>
+    </Template>
+      <Template Order="108" MainID="0x0406" SubID="0x0001" Name="National health insurance of TWN" Width="86" Height="53">
+    </Template>
+      <Template Order="109" MainID="0x0407" SubID="0x0001" Name="Resident ID card of TWN (Obverse side)" Width="86" Height="53">
+    </Template>
+      <Template Order="110" MainID="0x0408" SubID="0x0001" Name="Resident ID card of TWN (Reverse side)" Width="86" Height="53">
+    </Template>
+      <Template Order="111" MainID="0x07d1" SubID="0x0001" Name="Malaysian identity card" Width="86" Height="53">
+    </Template>
+      <Template Order="112" MainID="0x07d2" SubID="0x0001" Name="California driver license" Width="86" Height="53">
+    </Template>
+      <Template Order="113" MainID="0x07d3" SubID="0x0001" Name="New Zealand driver license" Width="86" Height="53">
+    </Template>
+      <Template Order="114" MainID="0x07d4" SubID="0x0001" Name="Singapore identity card" Width="86" Height="53">
+    </Template>
+    <Template Order="115" MainID="0x07d8" SubID="0x0001" Name=" TD3 SIZE MRZ" Width="124" Height="87">
+    <Classifier>
+      <Filter Index="7" TypeID="0x0004">
+		<RULE MrzLineIndex="0" CharNum="44" FlagPos="" Flag=""/>
+		<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag=""/>
+		</Filter>
+		</Classifier>
+    </Template>
+      <Template Order="116" MainID="0x000d" SubID="0x0112" Name="passport(TWN)" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="PTWN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="10,11,12" Flag="TWN" />
+        </Filter>
+      </Classifier>
+    </Template>
+     <Template Order="117" MainID="0x07d7" SubID="0x0001" Name="TD1 Size" Width="86" Height="53">
+      <Classifier>
+        <!--Filter Index="3" TypeID="0x0008">
+          <MAP PCAID="0x000c" />
+          <MAP PCAID="0x000d" />
+        </Filter-->
+        <!--Filter Index="0" TypeID="0x0001" SID="2"></Filter-->
+        <Filter Index="6" TypeID="0x0004">
+		<RULE MrzLineIndex="0" CharNum="30" FlagPos="0" Flag="I"/>
+		<RULE MrzLineIndex="1" CharNum="30" FlagPos="" Flag=""/>
+		<RULE MrzLineIndex="2" CharNum="30" FlagPos="" Flag=""/>
+		</Filter>
+        </Classifier>
+    </Template>
+     <Template Order="118" MainID="0x07d6" SubID="0x0001" Name=" TD2 SIZE MRZ" Width="86" Height="53">
+     <Classifier>
+      <Filter Index="2" TypeID="0x0004">
+		<RULE MrzLineIndex="0" CharNum="36" FlagPos="0" Flag="I"/>
+		<RULE MrzLineIndex="1" CharNum="36" FlagPos="" Flag=""/>
+	  </Filter>
+	</Classifier>
+    </Template>
+     <Template Order="119" MainID="0x0019" SubID="0x0001" Name="台胞证正面（卡式、2015）" Width="86" Height="53">
+    </Template> 
+	<Template Order="120" MainID="0x001C" SubID="0x0001" Name="中国驾驶证副页" Width="88" Height="60">
+    </Template> 
+	<Template Order="121" MainID="0x03ed" SubID="0x0002" Name="澳门永久性居民身份证（新版）" Width="86" Height="53">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="2"></Filter>
+		<Filter Index="10" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="10" FlagPos="7,9" Flag="()" />
+        </Filter>
+      </Classifier>
+    </Template>
+    <Template Order="122" MainID="0x000c" SubID="0x0016" Name="签证国外签发-美国" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4" Flag="VUSA" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+        </Filter>
+      </Classifier>
+    </Template>
+	<Template Order="123" MainID="0x040c" SubID="0x0002" Name="Two MRZ 36*2TD-2" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"></Filter>
+			<Filter Index="11" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="36" FlagPos="0" Flag="I" />
+				<RULE MrzLineIndex="1" CharNum="36" FlagPos="" Flag="" />
+			</Filter>
+			<Filter Index="11" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="36" FlagPos="0" Flag="C" />
+				<RULE MrzLineIndex="1" CharNum="36" FlagPos="" Flag="" />
+			</Filter>
+			<Filter Index="11" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="36" FlagPos="0" Flag="A" />
+				<RULE MrzLineIndex="1" CharNum="36" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>
+    </Template>
+	<Template Order="124" MainID="0x0409" SubID="0x0002" Name="三行机读码新版回乡证背面" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="13" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="30" FlagPos="0,1,2" Flag="CRH" />
+				<RULE MrzLineIndex="1" CharNum="30" FlagPos="" Flag="" />
+				<RULE MrzLineIndex="2" CharNum="30" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>
+    </Template>
+	<Template Order="125" MainID="0x0409" SubID="0x0003" Name="三行机读码新版台胞证背面" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="13" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="30" FlagPos="0,1" Flag="CT" />
+				<RULE MrzLineIndex="1" CharNum="30" FlagPos="" Flag="" />
+				<RULE MrzLineIndex="2" CharNum="30" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>
+    </Template>
+	<Template Order="126" MainID="0x0409" SubID="0x0004" Name="三行机读码TD-1" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="13" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="30" FlagPos="0,1" Flag="ID" />
+				<RULE MrzLineIndex="1" CharNum="30" FlagPos="" Flag="" />
+				<RULE MrzLineIndex="2" CharNum="30" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>
+    </Template>
+	<Template Order="127" MainID="0x040a" SubID="0x0002" Name="通用MRZ台胞证92版" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="12" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="44" FlagPos="0" Flag="T" />
+				<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>	
+    </Template>
+	<Template Order="128" MainID="0x040a" SubID="0x0003" Name="通用MRZ台湾通行证92版" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="12" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="44" FlagPos="0" Flag="D" />
+				<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>	
+    </Template>
+	<Template Order="129" MainID="0x040a" SubID="0x0004" Name="通用MRZ签证" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="12" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="44" FlagPos="0" Flag="V" />
+				<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>	
+    </Template>
+	<Template Order="130" MainID="0x040a" SubID="0x0005" Name="通用MRZ护照" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="12" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="44" FlagPos="0" Flag="P" />
+				<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>	
+    </Template>
+	<Template Order="131" MainID="0x040a" SubID="0x0006" Name="通用MRZ海员证09版" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="12" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="44" FlagPos="0" Flag="S" />
+				<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>	
+    </Template>
+	<Template Order="132" MainID="0x040a" SubID="0x0007" Name="通用MRZ出入境通行证14版" Width="86" Height="21">
+		<Classifier>
+			<Filter Index="0" TypeID="0x0001" SID="9"/>
+			<Filter Index="12" TypeID="0x0004">
+				<RULE MrzLineIndex="0" CharNum="44" FlagPos="0" Flag="B" />
+				<RULE MrzLineIndex="1" CharNum="44" FlagPos="" Flag="" />
+			</Filter>
+		</Classifier>	
+    </Template>
+	<Template Order="133" MainID="0x000d" SubID="0x0158" Name="香港护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4," Flag="PCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,10,11,12" Flag="HCHN" />
+        </Filter>
+        <!-- <Filter Index="4" TypeID="0x0002" CheckThresh="0.25">
+            <Region Left="0.266129" Right="0.548387" Top="0.5632183" Bottom="0.78160919">
+            <KeyWords Content="机关公安部出入境" CharType="1" CharNum="8" Charset="" CharH="0.02425287" CharW="0.0163709" Blank="0.0032258" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.57563" Right="0.7719" Top="0.379310" Bottom="0.540229">
+            <KeyWords Content="签发" CharType="1" CharNum="2" Charset="" CharH="0.024252" CharW="0.016370" Blank="0.003225" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter> -->
+      </Classifier>
+    </Template>
+		<Template Order="134" MainID="0x000d" SubID="0x01BE" Name="澳门护照" Width="124" Height="87">
+      <Classifier>
+        <Filter Index="0" TypeID="0x0001" SID="3"></Filter>
+        <Filter Index="1" TypeID="0x0004">
+          <RULE MrzLineIndex="0" CharNum="44" FlagPos="0,2,3,4," Flag="PCHN" />
+          <RULE MrzLineIndex="1" CharNum="44" FlagPos="0,1,10,11,12" Flag="MACHN" />
+        </Filter>
+        <!-- <Filter Index="4" TypeID="0x0002" CheckThresh="0.25">
+            <Region Left="0.266129" Right="0.548387" Top="0.5632183" Bottom="0.78160919">
+            <KeyWords Content="机关公安部出入境" CharType="1" CharNum="8" Charset="" CharH="0.02425287" CharW="0.0163709" Blank="0.0032258" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+          <Region Left="0.57563" Right="0.7719" Top="0.379310" Bottom="0.540229">
+            <KeyWords Content="签发" CharType="1" CharNum="2" Charset="" CharH="0.024252" CharW="0.016370" Blank="0.003225" />
+            <OrcEngine OcrMainType="1" OcrSubType="7" FilterType="1" FillingMethod="0" ImgType="8" />
+            <Preprocess Binarization="6" Rotation="0" />
+          </Region>
+        </Filter> -->
+      </Classifier>
+    </Template>
+	</TemplateSet>
+  <!--分类中所用到的识别核心-->
+  <OCRKenal DllPath="">
+    <Kenal MainType="1" SubType="6" LibPath="" />
+    <Kenal MainType="1" SubType="7" LibPath="" />
+	<Kenal MainType="1" SubType="17" LibPath="" />
+    <Kenal MainType="1" SubType="18" LibPath="" />
+  </OCRKenal>
+  <!--图像预处理去黑边、倾斜纠正-->
+  <ImgPreprocess>
+    <EraseBlackBorder Status="0" Method="1" Thresh="0.80" />
+    <TiltCorrection Status="0" Thresh="0.000001" />
+  </ImgPreprocess>
+</ClsTpl>

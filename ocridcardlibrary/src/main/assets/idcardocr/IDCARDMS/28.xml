@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE IDCARD SYSTEM "IDCARD.dtd">
+<IDCARD>
+	<CIDCardTemplate nMainDocumentID="28" chDocumentName="机动车驾驶证副页" engDocumentName="China Driving License sub page" imageSizeType="1">
+		<vecAutoProcess>
+			<vecProcessMode nMode="0"> 
+				<!--CAutoProcess processType="22">
+			  <CIDCardAutoProcessEx nCropType="3" bCrop="1" nRotateType="3" bRotate="1" nMaxAngle="0.3" nMinAngle="0.017" nFilledType="1" bTilt="1" bSameSize="1" bResize="1" nWidth="1039" nHeight="709"/> 
+			</CAutoProcess--> 
+				<CAutoProcess processType="27">
+					<PerspectiveObjDectIDCard nType="28" nWidth="1039" nHeight="709"/> 
+				</CAutoProcess>	
+				<CAutoProcess processType="25">
+					<PerspectiveTransformEx nType="5" nWidth="1039" nHeight="709"/> 
+				</CAutoProcess>		
+				
+			</vecProcessMode>
+			<vecProcessMode nMode="1"> 
+				<!--CAutoProcess processType="23">
+			  <CIDCardAutoProcessEx2 nCropType="1" nMaxAngle="0.3" nMinAngle="0.017" nFilledType="1" bIs180Rotate="0" bIsValid="0"  bSameSize="1"  bTilt="1"/> 
+			</CAutoProcess-->  
+				<CAutoProcess processType="24">
+					<PerspectiveTransform nType="3" bIs180Rotate="1" bIsValid="1" nWidth="896" nHeight="569"/> 
+				</CAutoProcess>  
+			</vecProcessMode>
+		</vecAutoProcess>    
+		<vecProcessImage>
+			<CProcessImage processType="3">
+				<CEraseBlackBorderEx>
+					<!--processRect要检测黑边的区域-->
+					<RECT Left="0" Top="0" Right="10000" Bottom="10000" />
+					<!--unProcessRect在要检测的区域里，能够确定的不需要检测黑边的部分，
+
+
+
+
+
+
+
+
+					也就是说这个区域肯定没有黑边存在，用来提高检测效率-->
+					<RECT Left="2000" Top="2000" Right="8900" Bottom="8000" />
+				</CEraseBlackBorderEx>
+			</CProcessImage>
+		</vecProcessImage>
+		<vecRegion>				
+			<CRegion nIndex="0" nRegionType="1" nProcessOrder="1">
+				<!--处理该区域需要的图像信息的光的类型-->
+				<vecImageLightType>
+					<!--1:可见光图;2:红外光图;4:紫外光图 -->
+					<LIGHTTYPE>1</LIGHTTYPE>
+					<LIGHTTYPE>2</LIGHTTYPE>
+				</vecImageLightType>
+				<!--定义区域的定位信息,如果是头像区域还需要进一步精确定位，识别区域就不用了-->
+				<!--bAccurateLocate为1表示需要进一步精确定位,0代表不需要-->
+				<CLocateRegion bAccurateLocate="0">
+					<vecProcessImage/>
+					<!--rcMinRect:指定定位区域的最小范围，即定位后的区域范围必须包含这个区域-->
+					<RECT Left="9900" Top="9900" Right="0" Bottom="0" />
+					<vecAnchorLocateInfo>
+						<!--nDisToAnchor的值也是整图的百分比*10000计算出来的-->
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="1350" anchorType="1" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="8900" anchorType="2" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="310" anchorType="3" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="1500" anchorType="4" />
+					</vecAnchorLocateInfo>
+					<!--该区域定义的区域类型基准点的信息-->
+					<vecCLocateAnchor/>
+				</CLocateRegion>
+				<CLocateLine>
+					<!--rcHorizontal：进行行的左右边界定位时的区域范围，坐标单位为所在区域的百分比*100-->
+					<RECT Left="0" Top="0" Right="100" Bottom="100" />
+					<!--rcVertical：进行行的上下边界定位时的区域范围，坐标单位为所在区域的百分比*100-->
+					<RECT Left="25" Top="0" Right="85" Bottom="100" />
+					<!--nLocateMethod:0灰度变化的方式进行行定位;1投影方式进行行定位-->
+					<!--bHeight:是否等高-->
+					<!--bSpace:是否等间距-->
+					<!--bWidth:是否等宽-->
+					<!--nMinElementNum:该行最少元素数-->
+					<!--nMaxElementNum:该行最多元素数-->
+					<!--nMinWidth:元素的最小宽度-->
+					<!--nMaxWidth:元素的最大宽度-->
+					<!--nMinHeight:元素的最小高度-->
+					<!--nMaxHeight:元素的最大高度-->
+					<!--nMinSpace:元素间的最小间距-->
+					<!--nMaxSpace:元素间的最大间距-->
+					<CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="7000" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="0" nMinElementNum="1" nMaxElementNum="1" nMinWidth="3000" nMaxWidth="7500" nMinHeight="500" nMaxHeight="1100" nMinSpace="0" nMaxSpace="400" bPostProcess="0">
+						<vecCLocateMethod>
+							<CLocateMethod nLocateMethod="1">
+								<vecProcessImage>
+									<CProcessImage processType="1">
+										<CTrueColorToGrayEx nFilter="0">
+											<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+										</CTrueColorToGrayEx>
+									</CProcessImage>
+									<CProcessImage processType="2">
+										<CGrayToBinaryEx>
+											<vecBinaryParam>
+												<BINARYPARAM nBlockNum="1" nMethod="6" />
+											</vecBinaryParam>
+											<!--processRect-->
+											<RECT Left="0" Top="0" Right="0" Bottom="0" />
+										</CGrayToBinaryEx>
+									</CProcessImage>
+								</vecProcessImage>
+							</CLocateMethod>
+							<CLocateMethod nLocateMethod="0">
+								<!--在定位前进行的预处理信息，一般是二值化-->
+								<vecProcessImage>
+									<CProcessImage processType="1">
+										<CTrueColorToGrayEx nFilter="0">
+											<RECT Top="0" Right="0" Bottom="0" Left="0" />
+										</CTrueColorToGrayEx>
+									</CProcessImage>
+								</vecProcessImage>
+							</CLocateMethod>
+						</vecCLocateMethod>
+					</CLocateInfo>
+					<!--采用定位算法对行定位后，边界要浮动的大小，可以为负数
+					也是整图的百分比*10000计算出来的-->
+					<positionPlus nLeftPlus="-120" nRightPlus="400" nTopPlus="-200" nBottomPlus="200" />
+				</CLocateLine>
+				<vecLine>
+					<!--nIndex:该行在区域内是第几行，以第一行或者最后一行为基准从0开始的偏移-->
+					<!--bStartOffset:如果是以区域的第一行为基准，该值为true,否则为false-->
+					<!--bEndOffset:如果是以区域的最后一行为基准，该值为false，否则为false-->
+					<!--nLineType:0代表不需要识别，1代表需要识别-->
+					<CLine nIndex="0" bStartOffset="1" bEndOffset="0" bExist="1" bNeedRecog="1" nCheckKeyWord="0">
+						<!--rcLineResult:行的初始位置信息，初始值尽量写最小的区域范围，这样最准确
+						    如果都为0代表该值不可靠，坐标单位为坐标均为占整张图像的百分比*10000
+						-->
+						<RECT Left="0" Top="0" Right="0" Bottom="0" />
+						<vecRecogInfo>
+							<CRecogInfo bIgnorePoint="0" nMaxPointWidth="0" nMaxPointHeight="0" bMatchRegExp="0" charOrder="\S{1,-1}" bConfirmParams="0" nProcessOrder="0" nKernelType="0">
+								<!--定位字符的信息-->
+								<!--定位字符的信息-->
+								<!--nLocateMethod:  0,用识别核心做定位;
+												1，提取连通域的方法进行定位;
+												2，投影方法进行定位
+
+
+
+
+
+
+							-->
+								<!--nMinElementNum:该行最少元素数-->
+								<!--nMaxElementNum:该行最多元素数-->
+								<!--nMinWidth:元素的最小宽度-->
+								<!--nMaxWidth:元素的最大宽度-->
+								<!--nMinHeight:元素的最小高度-->
+								<!--nMaxHeight:元素的最大高度-->
+								<!--nMinSpace:元素间的最小间距-->
+								<!--nMaxSpace:元素间的最大间距-->
+								<CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="210" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="0" nMinElementNum="15" nMaxElementNum="15" nMinWidth="300" nMaxWidth="500" nMinHeight="400" nMaxHeight="850" nMinSpace="20" nMaxSpace="300" bPostProcess="0">
+									<vecCLocateMethod>
+										<CLocateMethod nLocateMethod="1">
+											<vecProcessImage>
+												<CProcessImage processType="1">
+													<CTrueColorToGrayEx nFilter="0">
+														<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+													</CTrueColorToGrayEx>
+												</CProcessImage>
+												<CProcessImage processType="2">
+													<CGrayToBinaryEx>
+														<vecBinaryParam>
+															<BINARYPARAM nBlockNum="1" nMethod="3" />
+														</vecBinaryParam>
+														<!--processRect-->
+														<RECT Left="0" Top="0" Right="0" Bottom="0" />
+													</CGrayToBinaryEx>
+												</CProcessImage>
+											</vecProcessImage>
+										</CLocateMethod>
+									</vecCLocateMethod>
+								</CLocateInfo>
+								<vecKernal>
+									<!--nRecogType:0识别区域，1识别字符-->
+									<!--nRecogImgeType:进行识别时需要的图像类型，0代表灰度，1代表二值-->
+									<CKernalInfo kernalMainType="1" nKernalSubType="7" nFilterType="1" nFillingMethod="1" strFilterPlus="" nRecogType="1" nRecogImgeType="0">
+										<vecCharRatio>
+											<CCharRatio strChars="" charType="1" nWHRatio="85" />
+										</vecCharRatio>
+									</CKernalInfo>
+								</vecKernal>
+							</CRecogInfo>
+						</vecRecogInfo>
+						<!--nRecogType:0识别区域，1识别字符-->
+						<!--nRecogImgeType:进行识别时需要的图像类型，0代表灰度，1代表二值-->
+						<!--cellRecogType:识别内容
+								NAMECH=0,//中文姓名
+								SEX=1,//性别
+								NATION=2,//民族
+								BIRTHDAY=3,//出生日期
+								ISSUINGDATE=4,//签发日期
+								VALIDPERIOD=5,//有效期至
+								ADDRESSS=6,//地址
+								IDNUMBER=7,//身份证号码
+
+
+
+
+
+
+
+
+								PPMRZ1=8,//护照类型证件的机读码第一行
+
+
+
+
+
+
+
+
+								PPMRZ2=9,//护照类型证件的机读码第二行
+
+
+
+
+
+
+
+
+								OTHER=10//其他类型
+						-->
+						<!--charOrder:字符的排列情况，用正则表达式表示-->
+						<!--kernalMainType识别核心主类型 
+								TH_OCR=1,
+								SSFT152=2,
+								BARCODE=3
+						-->
+						<!--vecRecogUnit:行内识别单元的信息-->
+						<vecRecogUnit/>
+						<!--vecLineKeyWord:记录该行内用来定位的关键字信息-->
+						<vecLineKeyWord>
+							<CKeyWord content="中" nConfirmType="1" nMinWidth="0" nMaxHeight="0" nMinHeight="0" nMaxWidth="0">
+								<vecCLocateAnchor>
+									<CLocateAnchor nDisToAnchor="-260" nAnchorIndex="2" anchorType="1" />
+								</vecCLocateAnchor>
+							</CKeyWord>
+							<CKeyWord content="华" nConfirmType="1" nMinWidth="0" nMaxHeight="0" nMinHeight="0" nMaxWidth="0">
+								<vecCLocateAnchor>
+									<CLocateAnchor nDisToAnchor="-825" nAnchorIndex="2" anchorType="1" />
+								</vecCLocateAnchor>
+							</CKeyWord>
+							<CKeyWord content="人" nConfirmType="1" nMinWidth="0" nMaxHeight="0" nMinHeight="0" nMaxWidth="0">
+								<vecCLocateAnchor>
+									<CLocateAnchor nDisToAnchor="-1410" nAnchorIndex="2" anchorType="1" />
+								</vecCLocateAnchor>
+							</CKeyWord>
+							<CKeyWord content="民" nConfirmType="1" nMinWidth="0" nMaxHeight="0" nMinHeight="0" nMaxWidth="0">
+								<vecCLocateAnchor>
+									<CLocateAnchor nDisToAnchor="-1920" nAnchorIndex="2" anchorType="1" />
+									<CLocateAnchor nDisToAnchor="0" nAnchorIndex="4" anchorType="2" />
+								</vecCLocateAnchor>
+							</CKeyWord>
+							<CKeyWord content="共" nConfirmType="1" nMinWidth="0" nMaxHeight="0" nMinHeight="0" nMaxWidth="0">
+								<vecCLocateAnchor>
+									<CLocateAnchor nDisToAnchor="-2430" nAnchorIndex="2" anchorType="1" />
+									<CLocateAnchor nDisToAnchor="450" nAnchorIndex="4" anchorType="1" />
+								</vecCLocateAnchor>
+							</CKeyWord>
+							<CKeyWord content="和" nConfirmType="1" nMinWidth="0" nMaxHeight="0" nMinHeight="0" nMaxWidth="0">
+								<vecCLocateAnchor>
+									<CLocateAnchor nDisToAnchor="-2900" nAnchorIndex="2" anchorType="1" />
+								</vecCLocateAnchor>
+							</CKeyWord>
+							<CKeyWord content="国" nConfirmType="1" nMinWidth="0" nMaxHeight="0" nMinHeight="0" nMaxWidth="0">
+								<vecCLocateAnchor>
+									<CLocateAnchor nDisToAnchor="-3400" nAnchorIndex="2" anchorType="1" />
+									<CLocateAnchor nDisToAnchor="40" nAnchorIndex="9" anchorType="2" />
+								</vecCLocateAnchor>
+							</CKeyWord>
+						</vecLineKeyWord>
+						<!--vecAnchor:记录该行定义基准点的信息-->
+						<vecCLocateAnchor>
+							<CLocateAnchor nDisToAnchor="0" nAnchorIndex="5" anchorType="4" />
+						</vecCLocateAnchor>
+					</CLine>
+					<CLine nIndex="1" bStartOffset="1" bEndOffset="0" bExist="0" bNeedRecog="0" nCheckKeyWord="0" >
+						<RECT Left="0" Top="0" Right="0" Bottom="0" />
+						<vecRecogInfo/>
+					</CLine>
+				</vecLine>
+			</CRegion>
+			<CRegion nIndex="1" nRegionType="1" nProcessOrder="2">
+				<!--处理该区域需要的图像信息的光的类型-->
+				<vecImageLightType>
+					<!--1:可见光图;2:红外光图;4:紫外光图 -->
+					<LIGHTTYPE>1</LIGHTTYPE>
+					<LIGHTTYPE>2</LIGHTTYPE>
+				</vecImageLightType>
+				<!--定义区域的定位信息,如果是头像区域还需要进一步精确定位，识别区域就不用了-->
+				<!--bAccurateLocate为1表示需要进一步精确定位,0代表不需要-->
+				<CLocateRegion bAccurateLocate="0">
+					<vecProcessImage/>
+					<!--rcMinRect:指定定位区域的最小范围，即定位后的区域范围必须包含这个区域-->
+					<RECT Left="9900" Top="9900" Right="0" Bottom="0" />
+					<vecAnchorLocateInfo>
+						<!--nDisToAnchor的值也是整图的百分比*10000计算出来的-->
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="2700" anchorType="1" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="8700" anchorType="2" />
+						<CAnchorLocateInfo nAnchorIndex="5" nDisToAnchor="130" anchorType="3" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="1450" anchorType="3" />
+						<CAnchorLocateInfo nAnchorIndex="5" nDisToAnchor="1550" anchorType="4" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="3250" anchorType="4" />
+					</vecAnchorLocateInfo>
+					<!--该区域定义的区域类型基准点的信息-->
+					<vecCLocateAnchor/>
+				</CLocateRegion>
+				<CLocateLine>
+					<!--rcHorizontal：进行行的左右边界定位时的区域范围，坐标单位为所在区域的百分比*100-->
+					<RECT Left="0" Top="0" Right="100" Bottom="100" />
+					<!--rcVertical：进行行的上下边界定位时的区域范围，坐标单位为所在区域的百分比*100-->
+					<RECT Left="10" Top="0" Right="50" Bottom="100" />
+					<!--nLocateMethod:0灰度变化的方式进行行定位;1投影方式进行行定位-->
+					<!--bHeight:是否等高-->
+					<!--bSpace:是否等间距-->
+					<!--bWidth:是否等宽-->
+					<!--nMinElementNum:该行最少元素数-->
+					<!--nMaxElementNum:该行最多元素数-->
+					<!--nMinWidth:元素的最小宽度-->
+					<!--nMaxWidth:元素的最大宽度-->
+					<!--nMinHeight:元素的最小高度-->
+					<!--nMaxHeight:元素的最大高度-->
+					<!--nMinSpace:元素间的最小间距-->
+					<!--nMaxSpace:元素间的最大间距-->
+					<CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="1500" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="0" nMinElementNum="1" nMaxElementNum="-1" nMinWidth="4000" nMaxWidth="5500" nMinHeight="500" nMaxHeight="800" nMinSpace="150" nMaxSpace="1000" bPostProcess="0">
+						<vecCLocateMethod>
+							<CLocateMethod nLocateMethod="1">
+								<vecProcessImage>
+									<CProcessImage processType="1">
+										<CTrueColorToGrayEx nFilter="-1">
+											<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+										</CTrueColorToGrayEx>
+									</CProcessImage>
+									<CProcessImage processType="2">
+										<CGrayToBinaryEx>
+											<vecBinaryParam>
+												<BINARYPARAM nBlockNum="1" nMethod="6" />
+											</vecBinaryParam>
+											<!--processRect-->
+											<RECT Left="0" Top="0" Right="0" Bottom="0" />
+										</CGrayToBinaryEx>
+									</CProcessImage>
+								</vecProcessImage>
+							</CLocateMethod>
+							<CLocateMethod nLocateMethod="0">
+								<!--在定位前进行的预处理信息，一般是二值化-->
+								<vecProcessImage>
+									<CProcessImage processType="1">
+										<CTrueColorToGrayEx nFilter="0">
+											<RECT Top="0" Right="0" Bottom="0" Left="0" />
+										</CTrueColorToGrayEx>
+									</CProcessImage>
+								</vecProcessImage>
+							</CLocateMethod>
+						</vecCLocateMethod>
+					</CLocateInfo>
+					<!--采用定位算法对行定位后，边界要浮动的大小，可以为负数
+					也是整图的百分比*10000计算出来的-->
+					<positionPlus nLeftPlus="-120" nRightPlus="800" nTopPlus="-100" nBottomPlus="200" />
+				</CLocateLine>
+				<vecLine>
+					<!--nIndex:该行在区域内是第几行，以第一行或者最后一行为基准从0开始的偏移-->
+					<!--bStartOffset:如果是以区域的第一行为基准，该值为true,否则为false-->
+					<!--bEndOffset:如果是以区域的最后一行为基准，该值为false，否则为false-->
+					<!--nLineType:0代表不需要识别，1代表需要识别-->
+					<CLine nIndex="0" bStartOffset="1" bEndOffset="0" bExist="1" bNeedRecog="0" nCheckKeyWord="0">
+						<!--rcLineResult:行的初始位置信息，初始值尽量写最小的区域范围，这样最准确
+						    如果都为0代表该值不可靠，坐标单位为坐标均为占整张图像的百分比*10000
+						-->
+						<RECT Left="0" Top="0" Right="0" Bottom="0" />
+						<vecRecogInfo/>
+						<!--nRecogType:0识别区域，1识别字符-->
+						<!--nRecogImgeType:进行识别时需要的图像类型，0代表灰度，1代表二值-->
+						<!--cellRecogType:识别内容
+							NAMECH=0,//中文姓名
+							SEX=1,//性别
+							NATION=2,//民族
+							BIRTHDAY=3,//出生日期
+							ISSUINGDATE=4,//签发日期
+							VALIDPERIOD=5,//有效期至
+							ADDRESSS=6,//地址
+							IDNUMBER=7,//身份证号码
+
+
+
+
+
+
+							PPMRZ1=8,//护照类型证件的机读码第一行
+
+
+
+
+
+
+							PPMRZ2=9,//护照类型证件的机读码第二行
+
+
+
+
+
+
+							OTHER=10//其他类型
+						-->
+						<!--charOrder:字符的排列情况，用正则表达式表示-->
+						<!--kernalMainType识别核心主类型 
+								TH_OCR=1,
+								SSFT152=2,
+								BARCODE=3
+						-->
+						<!--vecRecogUnit:行内识别单元的信息-->
+						<vecRecogUnit>
+							<!--nIndex:识别单元序号-->
+							<!--cellName:识别单元名称-->
+							<!--bLocate:该识别单元是否需要定位-->
+							<!--bReRecog:该识别单元是否需要重新识别-->
+							<!--OutputThreshold:输出界限一，待输出的识别结果的字频的值不能低于该值-->
+							<!--输出界限二，字频值< OutputThreshold的个数最大不能超过该值，否则将不输出-->
+							<CRecogUnit nIndex="1" bLocate="1" bRecog="1">
+								<CLocateRecogUnit nStartIndexInChar="-1" nEndIndexInChar="0" bStart="0" bEnd="1">
+									<vecAnchorLocateInfo>
+										<CAnchorLocateInfo nDisToAnchor="500" nAnchorIndex="4" anchorType="1" />
+										<CAnchorLocateInfo nDisToAnchor="2350" nAnchorIndex="2" anchorType="1" />
+										<CAnchorLocateInfo nDisToAnchor="3550" nAnchorIndex="0" anchorType="1" />
+										<CAnchorLocateInfo nDisToAnchor="1000" nAnchorIndex="5" anchorType="4" />
+										<CAnchorLocateInfo nDisToAnchor="2100" nAnchorIndex="0" anchorType="4" />
+									</vecAnchorLocateInfo>
+								</CLocateRecogUnit>
+								<vecRecogInfo>
+									<CRegionRecogInfo nProcessOrder="1" nKernelType="1" nMinElementNum="10" nMaxElementNum="20">									
+										<vecRegionKernal>
+											<CRegionKernalInfo kernalMainType="5" nMainID="28" nID="0" nIndex="4"   strModel="jsz_all_cpu.caffemodel" nRecogType="0" nRecogImgeType="2">
+											</CRegionKernalInfo>
+										</vecRegionKernal>
+									</CRegionRecogInfo>
+									<CRecogInfo bIgnorePoint="0" nMaxPointWidth="0" nMaxPointHeight="0" bMatchRegExp="0" charOrder="\D{15}(\D{2}[\DX])?" bConfirmParams="0" nProcessOrder="0" nKernelType="0">
+										<!--定位字符的信息-->
+										<!--定位字符的信息-->
+										<!--nLocateMethod:  0,用识别核心做定位;
+														1，提取连通域的方法进行定位;
+														2，投影方法进行定位
+
+
+
+
+
+
+									-->
+										<!--bHeight:是否等高-->
+										<!--bSpace:是否等间距-->
+										<!--bWidth:是否等宽-->
+										<!--nMinElementNum:该行最少元素数-->
+										<!--nMaxElementNum:该行最多元素数-->
+										<!--nMinWidth:元素的最小宽度-->
+										<!--nMaxWidth:元素的最大宽度-->
+										<!--nMinHeight:元素的最小高度-->
+										<!--nMaxHeight:元素的最大高度-->
+										<!--nMinSpace:元素间的最小间距-->
+										<!--nMaxSpace:元素间的最大间距-->
+										<CLocateInfo bEraseStart="1" nMinWHRatio="0" nMaxWHRatio="100" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="1" bRemoveLineNoise="0" nMinElementNum="14" nMaxElementNum="18" nMinWidth="10" nMaxWidth="240" nMinHeight="300" nMaxHeight="850" nMinSpace="0" nMaxSpace="250" bPostProcess="0">
+											<vecCLocateMethod>
+												<CLocateMethod nLocateMethod="1">
+													<vecProcessImage>
+														<CProcessImage processType="1">
+															<CTrueColorToGrayEx nFilter="0">
+																<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+															</CTrueColorToGrayEx>
+														</CProcessImage>
+														<CProcessImage processType="2">
+															<CGrayToBinaryEx>
+																<vecBinaryParam>
+																	<BINARYPARAM nBlockNum="1" nMethod="6" />
+																</vecBinaryParam>
+																<!--processRect-->
+																<RECT Left="0" Top="0" Right="0" Bottom="0" />
+															</CGrayToBinaryEx>
+														</CProcessImage>
+													</vecProcessImage>
+												</CLocateMethod>
+
+												<CLocateMethod nLocateMethod="1">
+													<vecProcessImage>
+														<CProcessImage processType="1">
+															<CTrueColorToGrayEx nFilter="0">
+																<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+															</CTrueColorToGrayEx>
+														</CProcessImage>
+														<CProcessImage processType="2">
+															<CGrayToBinaryEx>
+																<vecBinaryParam>
+																	<BINARYPARAM nBlockNum="4" nMethod="7" />
+																	<BINARYPARAM nBlockNum="1" nMethod="3" />
+																</vecBinaryParam>
+																<!--processRect-->
+																<RECT Left="0" Top="0" Right="0" Bottom="0" />
+															</CGrayToBinaryEx>
+														</CProcessImage>
+													</vecProcessImage>
+												</CLocateMethod>
+											</vecCLocateMethod>
+										</CLocateInfo>
+										<vecKernal>
+											<!--nRecogType:0识别区域，1识别字符-->
+											<!--nRecogImgeType:进行识别时需要的图像类型，0代表灰度，1代表二值-->
+											<CKernalInfo kernalMainType="1" nKernalSubType="15" nFilterType="0" nFillingMethod="1" strFilterPlus="" nRecogType="1" nRecogImgeType="0">
+												<vecCharRatio>
+													<CCharRatio strChars="" charType="2" nWHRatio="60" />
+													<CCharRatio strChars="X" charType="10" nWHRatio="60" />
+													<CCharRatio strChars="1" charType="10" nWHRatio="20" />
+												</vecCharRatio>
+											</CKernalInfo>
+										</vecKernal>
+									</CRecogInfo>
+								</vecRecogInfo>
+							</CRecogUnit>
+						</vecRecogUnit>
+						<!--vecLineKeyWord:记录该行内用来定位的关键字信息-->
+						<vecLineKeyWord/>
+						<!--vecAnchor:记录该行定义基准点的信息-->
+						<vecCLocateAnchor>
+							<CLocateAnchor nDisToAnchor="0" nAnchorIndex="3" anchorType="4" />
+						</vecCLocateAnchor>
+					</CLine>
+				</vecLine>
+			</CRegion>
+			<CRegion nIndex="2" nRegionType="1" nProcessOrder="3">
+				<!--处理该区域需要的图像信息的光的类型-->
+				<vecImageLightType>
+					<!--1:可见光图;2:红外光图;4:紫外光图 -->
+					<LIGHTTYPE>1</LIGHTTYPE>
+					<LIGHTTYPE>2</LIGHTTYPE>
+				</vecImageLightType>
+				<!--定义区域的定位信息,如果是头像区域还需要进一步精确定位，识别区域就不用了-->
+				<!--bAccurateLocate为1表示需要进一步精确定位,0代表不需要-->
+				<CLocateRegion bAccurateLocate="0">
+					<vecProcessImage/>
+					<!--rcMinRect:指定定位区域的最小范围，即定位后的区域范围必须包含这个区域-->
+					<RECT Left="9900" Top="9900" Right="0" Bottom="0" />
+					<vecAnchorLocateInfo>
+						<!--nDisToAnchor的值也是整图的百分比*10000计算出来的-->
+						<CAnchorLocateInfo nAnchorIndex="2" nDisToAnchor="-120" anchorType="1" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="1380" anchorType="1" />
+						<CAnchorLocateInfo nAnchorIndex="2" nDisToAnchor="8500" anchorType="2" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="9600" anchorType="2" />
+						<CAnchorLocateInfo nAnchorIndex="3" nDisToAnchor="-180" anchorType="3" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="2100" anchorType="3" />
+						<CAnchorLocateInfo nAnchorIndex="3" nDisToAnchor="1500" anchorType="4" />
+						<CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="3900" anchorType="4" />
+					</vecAnchorLocateInfo>
+					<!--该区域定义的区域类型基准点的信息-->
+					<vecCLocateAnchor/>
+				</CLocateRegion>
+				<CLocateLine>
+					<!--rcHorizontal：进行行的左右边界定位时的区域范围，坐标单位为所在区域的百分比*100-->
+					<RECT Left="0" Top="0" Right="100" Bottom="100" />
+					<!--rcVertical：进行行的上下边界定位时的区域范围，坐标单位为所在区域的百分比*100-->
+					<RECT Left="0" Top="0" Right="55" Bottom="100" />
+
+					<CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="100" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="1" nMinElementNum="1" nMaxElementNum="2" nMinWidth="260" nMaxWidth="8500" nMinHeight="400" nMaxHeight="800" nMinSpace="80" nMaxSpace="500" bPostProcess="0" bInpaintLine="1" nSmooth="1">
+						<vecCLocateMethod>
+
+							<CLocateMethod nLocateMethod="1">
+								<vecProcessImage>
+									<CProcessImage processType="1">
+										<CTrueColorToGrayEx nFilter="0">
+											<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+										</CTrueColorToGrayEx>
+									</CProcessImage>
+									<CProcessImage processType="2">
+										<CGrayToBinaryEx>
+											<vecBinaryParam>
+												<!-- <BINARYPARAM nBlockNum="6" nMethod="7" /> -->
+												<!-- <BINARYPARAM nBlockNum="1" nMethod="3" /> -->
+												<BINARYPARAM nBlockNum="2" nMethod="3" />
+												<BINARYPARAM nBlockNum="3" nMethod="7" />
+											</vecBinaryParam>
+											<!--processRect-->
+											<RECT Left="0" Top="0" Right="0" Bottom="0" />
+										</CGrayToBinaryEx>
+									</CProcessImage>
+								</vecProcessImage>
+							</CLocateMethod>
+							<CLocateMethod nLocateMethod="0">
+								<!--在定位前进行的预处理信息，一般是二值化-->
+								<vecProcessImage>
+									<CProcessImage processType="1">
+										<CTrueColorToGrayEx nFilter="-1">
+											<RECT Top="0" Right="0" Bottom="0" Left="0" />
+										</CTrueColorToGrayEx>
+									</CProcessImage>
+								</vecProcessImage>
+							</CLocateMethod>
+						</vecCLocateMethod>
+					</CLocateInfo>
+					<!--采用定位算法对行定位后，边界要浮动的大小，可以为负数
+					也是整图的百分比*10000计算出来的-->
+					<positionPlus nLeftPlus="-150" nRightPlus="1000" nTopPlus="-110" nBottomPlus="60" />
+				</CLocateLine>
+				<vecLine>
+					<!--nIndex:该行在区域内是第几行，以第一行或者最后一行为基准从0开始的偏移-->
+					<!--bStartOffset:如果是以区域的第一行为基准，该值为true,否则为false-->
+					<!--bEndOffset:如果是以区域的最后一行为基准，该值为false，否则为false-->
+					<!--nLineType:0代表不需要识别，1代表需要识别-->
+					<CLine nIndex="0" bStartOffset="1" bEndOffset="0" bExist="1" bNeedRecog="1" nCheckKeyWord="0">
+						<!--rcLineResult:行的初始位置信息，初始值尽量写最小的区域范围，这样最准确
+						    如果都为0代表该值不可靠，坐标单位为坐标均为占整张图像的百分比*10000
+						-->
+						<RECT Left="0" Top="0" Right="0" Bottom="0" />
+						<vecRecogInfo/>
+						<!--vecRecogUnit:行内识别单元的信息-->
+						<vecRecogUnit>
+
+							<CRecogUnit nIndex="2" bLocate="1" bRecog="1">
+								<CLocateRecogUnit nStartIndexInChar="0" nEndIndexInChar="-1" bStart="1" bEnd="0">
+									<vecAnchorLocateInfo>
+										<CAnchorLocateInfo nDisToAnchor="-120" nAnchorIndex="2" anchorType="1" />
+										<CAnchorLocateInfo nDisToAnchor="3500" nAnchorIndex="2" anchorType="2" />
+										<CAnchorLocateInfo nDisToAnchor="4450" nAnchorIndex="0" anchorType="2" />
+									</vecAnchorLocateInfo>
+								</CLocateRecogUnit>
+								<vecRecogInfo>
+									<CRegionRecogInfo nProcessOrder="1" nKernelType="1" nMinElementNum="2" nMaxElementNum="6">									
+										<vecRegionKernal>
+											<CRegionKernalInfo kernalMainType="5" nMainID="28" nID="0" nIndex="4"   strModel="jsz_all_cpu.caffemodel" nRecogType="0" nRecogImgeType="2">
+											</CRegionKernalInfo>
+										</vecRegionKernal>
+									</CRegionRecogInfo>
+									<CRecogInfo bIgnorePoint="0" nMaxPointWidth="0" nMaxPointHeight="0" bMatchRegExp="0" charOrder="\S{2,-1}" bConfirmParams="0" nProcessOrder="0" nKernelType="0">
+										<!--定位字符的信息-->
+										<!--定位字符的信息-->
+										<!--nLocateMethod:  0,用识别核心做定位;
+														1，提取连通域的方法进行定位;
+														2，投影方法进行定位
+
+
+
+
+
+
+
+
+									-->
+										<!--bHeight:是否等高-->
+										<!--bSpace:是否等间距-->
+										<!--bWidth:是否等宽-->
+										<!--nMinElementNum:该行最少元素数-->
+										<!--nMaxElementNum:该行最多元素数-->
+										<!--nMinWidth:元素的最小宽度-->
+										<!--nMaxWidth:元素的最大宽度-->
+										<!--nMinHeight:元素的最小高度-->
+										<!--nMaxHeight:元素的最大高度-->
+										<!--nMinSpace:元素间的最小间距-->
+										<!--nMaxSpace:元素间的最大间距-->
+										<!--<CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="350" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="1" bRemoveLineNoise="1" nMinElementNum="2" nMaxElementNum="3" nMinWidth="340" nMaxWidth="1000" nMinHeight="500" nMinSpace="200" nMaxHeight="1300" nMaxSpace="1000" bPostProcess="0">-->
+										<CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="230" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="1" bRemoveLineNoise="1" nMinElementNum="2" nMaxElementNum="-1" nMinWidth="340" nMaxWidth="850" nMinHeight="50" nMinSpace="0" nMaxHeight="830" nMaxSpace="400" bPostProcess="1" bInpaintLine="2">
+											<vecCLocateMethod>
+												<CLocateMethod nLocateMethod="1">
+													<vecProcessImage>
+														<CProcessImage processType="1">
+															<CTrueColorToGrayEx nFilter="-1">
+																<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+															</CTrueColorToGrayEx>
+														</CProcessImage>
+														<CProcessImage processType="2">
+															<CGrayToBinaryEx>
+																<vecBinaryParam>
+																	<BINARYPARAM nBlockNum="1" nMethod="7" />
+																	<BINARYPARAM nBlockNum="1" nMethod="3" />
+																</vecBinaryParam>
+																<!--processRect-->
+																<RECT Left="0" Top="0" Right="0" Bottom="0" />
+															</CGrayToBinaryEx>
+														</CProcessImage>
+													</vecProcessImage>
+												</CLocateMethod>
+												<CLocateMethod nLocateMethod="1">
+													<vecProcessImage>
+														<CProcessImage processType="1">
+															<CTrueColorToGrayEx nFilter="0">
+																<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+															</CTrueColorToGrayEx>
+														</CProcessImage>
+														<CProcessImage processType="2">
+															<CGrayToBinaryEx>
+																<vecBinaryParam>
+																	<BINARYPARAM nBlockNum="1" nMethod="3" />
+																</vecBinaryParam>
+																<!--processRect-->
+																<RECT Left="0" Top="0" Right="0" Bottom="0" />
+															</CGrayToBinaryEx>
+														</CProcessImage>
+													</vecProcessImage>
+												</CLocateMethod>
+												<CLocateMethod nLocateMethod="1">
+													<vecProcessImage>
+														<CProcessImage processType="1">
+															<CTrueColorToGrayEx nFilter="0">
+																<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+															</CTrueColorToGrayEx>
+														</CProcessImage>
+														<CProcessImage processType="2">
+															<CGrayToBinaryEx>
+																<vecBinaryParam>
+																	<BINARYPARAM nBlockNum="1" nMethod="6" />
+																</vecBinaryParam>
+																<!--processRect-->
+																<RECT Left="0" Top="0" Right="0" Bottom="0" />
+															</CGrayToBinaryEx>
+														</CProcessImage>
+													</vecProcessImage>
+												</CLocateMethod>
+												<CLocateMethod nLocateMethod="1">
+													<vecProcessImage>
+														<CProcessImage processType="1">
+															<CTrueColorToGrayEx nFilter="0">
+																<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+															</CTrueColorToGrayEx>
+														</CProcessImage>
+														<CProcessImage processType="2">
+															<CGrayToBinaryEx>
+																<vecBinaryParam>
+																	<BINARYPARAM nBlockNum="1" nMethod="5" />
+																</vecBinaryParam>
+																<!--processRect-->
+																<RECT Left="0" Top="0" Right="0" Bottom="0" />
+															</CGrayToBinaryEx>
+														</CProcessImage>
+													</vecProcessImage>
+												</CLocateMethod>
+											</vecCLocateMethod>
+										</CLocateInfo>
+										<vecKernal>
+											<!--nRecogType:0识别区域，1识别字符-->
+											<!--nRecogImgeType:进行识别时需要的图像类型，0代表灰度，1代表二值-->
+											<CKernalInfo kernalMainType="1" nKernalSubType="7" nFilterType="1" nFillingMethod="0" strFilterPlus="" nRecogType="1" nRecogImgeType="0">
+												<vecCharRatio>
+													<CCharRatio strChars="" charType="1" nWHRatio="156" />
+													<CCharRatio strChars="一" charType="10" nWHRatio="400" />
+												</vecCharRatio>
+											</CKernalInfo>
+
+											<!--<CKernalInfo kernalMainType="1" nKernalSubType="17" nFilterType="1" nFillingMethod="0" strFilterPlus="" nRecogType="1" nRecogImgeType="0">
+                      <vecCharRatio>
+                        <CCharRatio strChars="" charType="1" nWHRatio="150" />
+                      </vecCharRatio>
+                    </CKernalInfo>-->
+
+										</vecKernal>
+									</CRecogInfo>
+								</vecRecogInfo>
+							</CRecogUnit>
+							<CRecogUnit nIndex="3" bLocate="1" bRecog="1">
+								<CLocateRecogUnit nStartIndexInChar="-1" nEndIndexInChar="-1" bStart="0" bEnd="0">
+									<vecAnchorLocateInfo>
+										<CAnchorLocateInfo nDisToAnchor="950" nAnchorIndex="9" anchorType="1" />
+										<CAnchorLocateInfo nDisToAnchor="4950" nAnchorIndex="2" anchorType="1" />
+										<CAnchorLocateInfo nDisToAnchor="5950" nAnchorIndex="0" anchorType="1" />
+										<CAnchorLocateInfo nDisToAnchor="4600" nAnchorIndex="9" anchorType="2" />
+										<CAnchorLocateInfo nDisToAnchor="8350" nAnchorIndex="2" anchorType="2" />
+										<CAnchorLocateInfo nDisToAnchor="9500" nAnchorIndex="0" anchorType="2" />
+
+									</vecAnchorLocateInfo>
+								</CLocateRecogUnit>
+								<vecRecogInfo>
+									<CRegionRecogInfo nProcessOrder="1" nKernelType="1" nMinElementNum="5" nMaxElementNum="20">									
+										<vecRegionKernal>
+											<CRegionKernalInfo kernalMainType="5" nMainID="28" nID="0" nIndex="4"   strModel="jsz_all_cpu.caffemodel" nRecogType="0" nRecogImgeType="2">
+											</CRegionKernalInfo>
+										</vecRegionKernal>
+									</CRegionRecogInfo>
+									<CRecogInfo bIgnorePoint="0" nMaxPointWidth="0" nMaxPointHeight="0" bMatchRegExp="0" charOrder="\S{1,-1}" bConfirmParams="0" bDetectLine="1" nProcessOrder="0" nKernelType="0">
+
+										<CLocateInfo bEraseStart="1" nMinWHRatio="0" nMaxWHRatio="100" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="0" nMinElementNum="12" nMaxElementNum="12" nMinWidth="10" nMaxWidth="260" nMinHeight="260" nMaxHeight="550" nMinSpace="50" nMaxSpace="250" bPostProcess="0">
+											<vecCLocateMethod>
+												<CLocateMethod nLocateMethod="1">
+													<vecProcessImage>
+														<CProcessImage processType="1">
+															<CTrueColorToGrayEx nFilter="6">
+																<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+															</CTrueColorToGrayEx>
+														</CProcessImage>
+														<CProcessImage processType="2">
+															<CGrayToBinaryEx>
+																<vecBinaryParam>
+																	<BINARYPARAM nBlockNum="1" nMethod="6" />
+																	<BINARYPARAM nBlockNum="1" nMethod="3" />
+																</vecBinaryParam>
+																<!--processRect-->
+																<RECT Left="0" Top="0" Right="0" Bottom="0" />
+															</CGrayToBinaryEx>
+														</CProcessImage>
+													</vecProcessImage>
+												</CLocateMethod>
+												<CLocateMethod nLocateMethod="1">
+													<vecProcessImage>
+														<CProcessImage processType="1">
+															<CTrueColorToGrayEx nFilter="0">
+																<RECT Top="0" Right="0" Bottom="0" Left="0"/>
+															</CTrueColorToGrayEx>
+														</CProcessImage>
+														<CProcessImage processType="2">
+															<CGrayToBinaryEx>
+																<vecBinaryParam>
+																	<BINARYPARAM nBlockNum="1" nMethod="6" />
+																</vecBinaryParam>
+																<!--processRect-->
+																<RECT Left="0" Top="0" Right="0" Bottom="0" />
+															</CGrayToBinaryEx>
+														</CProcessImage>
+													</vecProcessImage>
+												</CLocateMethod>
+
+											</vecCLocateMethod>
+										</CLocateInfo>
+										<vecKernal>
+											<!--nRecogType:0识别区域，1识别字符-->
+											<!--nRecogImgeType:进行识别时需要的图像类型，0代表灰度，1代表二值-->
+											<CKernalInfo kernalMainType="1" nKernalSubType="15" nFilterType="0" nFillingMethod="1" strFilterPlus="" nRecogType="1" nRecogImgeType="0">
+												<vecCharRatio>
+													<CCharRatio strChars="" charType="2" nWHRatio="60" />
+													<!--<CCharRatio strChars="X" charType="10" nWHRatio="60" />-->
+													<CCharRatio strChars="1" charType="10" nWHRatio="20" />
+												</vecCharRatio>
+											</CKernalInfo>
+										</vecKernal>
+									</CRecogInfo>
+								</vecRecogInfo>
+							</CRecogUnit>
+						</vecRecogUnit>
+						<!--vecLineKeyWord:记录该行内用来定位的关键字信息-->
+						<vecLineKeyWord/>
+						<vecCLocateAnchor/>
+					</CLine>
+					<CLine nIndex="1" bStartOffset="1" bEndOffset="0" bExist="0" bNeedRecog="0" nCheckKeyWord="0">
+						<RECT Left="0" Top="0" Right="0" Bottom="0" />
+						<vecRecogInfo>
+						<vecRecogInfo>
+						</vecRecogInfo>
+						</vecRecogInfo>
+						<vecRecogUnit>
+						</vecRecogUnit>
+						<vecLineKeyWord/>
+						<vecCLocateAnchor/>
+					</CLine>
+
+				</vecLine>
+			</CRegion>
+
+		</vecRegion>
+		<!--vecAnchor:该证件的所有的基准点的信息-->
+		<!--anchorType:基准点类型，取值如下
+
+
+
+
+
+
+			ZEROANCHOR=0,//(0,0)基准
+			LEFT=1,//左边
+			RIGHT=2,//右边
+			TOP=3,//上边
+			BOTTOM=4,//下边
+		-->
+		<vecAnchor>
+			<!--0基准点-->
+			<CAnchor nIndex="0" anchorPos="0" anchorType="0" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--头像区域定义左基准-->
+			<CAnchor nIndex="1" anchorPos="-1" anchorType="1" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--姓名右边基准-->
+			<CAnchor nIndex="2" anchorPos="-1" anchorType="1" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--证号行定义的下基准-->
+			<CAnchor nIndex="3" anchorPos="-1" anchorType="4" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--证号右边基准-->
+			<CAnchor nIndex="4" anchorPos="-1" anchorType="2" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--中华人民共和国机动车行定义的下基准-->
+			<CAnchor nIndex="5" anchorPos="-1" anchorType="4" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--准驾车型区域定义的下基准-->
+			<CAnchor nIndex="6" anchorPos="-1" anchorType="4" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--初始领证日期定义的右基准-->
+			<CAnchor nIndex="7" anchorPos="-1" anchorType="2" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--有效起始日期定义的右基准-->
+			<CAnchor nIndex="8" anchorPos="-1" anchorType="2" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+			<!--“机”左基准-->
+			<CAnchor nIndex="9" anchorPos="-1" anchorType="1" bEnable="0" nMinPos="-1" nMaxPos="-1" />
+		</vecAnchor>
+		<vecOutPutResult>
+			<COutPutResult nIndex="0" cellRecogType="20" cellNameEng="Reserve" cellName="保留" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0" />
+			<COutPutResult nIndex="1" cellRecogType="7" cellNameEng="ID Number" cellName="证号" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0" bMainField="1"/>
+			<COutPutResult nIndex="2" cellRecogType="0" cellNameEng="Name" cellName="姓名" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0" />
+			<COutPutResult nIndex="3" cellRecogType="20" cellNameEng="File number" cellName="档案编号" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0" bMainField="1"/>
+		</vecOutPutResult>
+		<vecMergeUnit>
+			<CMergeUnit nDestUnitIndex="3" nDestUnitType="4" nSrcUnitIndex="3" nSrcUnitType="4" strSrc="号" strDest="" nProcessPos="0" bMeet="1" bSynchronous="0" nOperateType="45" />
+			<CMergeUnit nDestUnitIndex="3" nDestUnitType="4" nSrcUnitIndex="3" nSrcUnitType="4" strSrc="号" strDest="" nProcessPos="0" bMeet="1" bSynchronous="0" nOperateType="42" />
+		</vecMergeUnit> 
+	</CIDCardTemplate>
+
+</IDCARD>

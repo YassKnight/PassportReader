@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_ActivationProgram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+
+        android:text="@string/ActivationProgram" />
+
+    <Button
+        android:id="@+id/btn_chooserIdCardType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_ActivationProgram"
+        android:text="@string/chooserIdCardType" />
+
+    <Button
+        android:id="@+id/btn_takePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_chooserIdCardType"
+        android:layout_centerHorizontal="true"
+        android:text="@string/takePicture" />
+
+    <Button
+        android:id="@+id/btn_Intelligent_detecting_edges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_takePicture"
+        android:text="@string/Intelligent_detecting_edges" />
+
+    <Button
+        android:id="@+id/btn_importRecog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_Intelligent_detecting_edges"
+        android:layout_centerHorizontal="true"
+        android:text="@string/importRecog" />
+
+    <Button
+        android:id="@+id/btn_cancel_imei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_imei"
+        android:layout_below="@id/btn_importRecog"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_cancel_imei"
+        android:text="@string/exit" />
+</RelativeLayout>
